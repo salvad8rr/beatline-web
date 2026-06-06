@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BEATLINE — Música electrónica en México</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&family=Sora:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0c;
+  --bg2:#111114;
+  --ink:#f4f4f0;
+  --muted:#8a8a92;
+  --line:#222228;
+  --accent:#d6ff3f;       /* verde ácido tipo club */
+  --accent2:#ff3d7f;      /* magenta de apoyo */
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Sora',sans-serif;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:1;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  mix-blend-mode:overlay;
+}
+a{color:inherit;text-decoration:none}
+
+/* ---------- HEADER ---------- */
+header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(10,10,12,.82);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.bar{
+  max-width:1240px;margin:0 auto;padding:18px 28px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.logo{
+  font-family:'Archivo Black',sans-serif;
+  font-size:1.5rem;letter-spacing:-1px;cursor:pointer;
+  display:flex;align-items:center;gap:10px;
+}
+.logo .dot{width:11px;height:11px;background:var(--accent);border-radius:50%;box-shadow:0 0 14px var(--accent)}
+.logo b{color:var(--accent)}
+nav{display:flex;gap:30px;font-size:.82rem;text-transform:uppercase;letter-spacing:2px;color:var(--muted);font-weight:600}
+nav span{cursor:pointer;transition:color .2s}
+nav span:hover{color:var(--ink)}
+.live{
+  font-family:'Space Mono',monospace;font-size:.72rem;color:var(--accent);
+  display:flex;align-items:center;gap:7px;text-transform:uppercase;letter-spacing:1px;
+}
+.live i{width:7px;height:7px;background:var(--accent);border-radius:50%;animation:pulse 1.4s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+
+/* ---------- HERO / MARQUEE ---------- */
+.ticker{
+  background:var(--accent);color:#0a0a0c;overflow:hidden;white-space:nowrap;
+  border-bottom:1px solid var(--line);
+}
+.ticker .track{display:inline-block;padding:9px 0;animation:scroll 28s linear infinite;font-family:'Space Mono',monospace;font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:1px}
+.ticker .track span{margin:0 26px}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+main{max-width:1240px;margin:0 auto;padding:0 28px;position:relative;z-index:2}
+
+/* ---------- HERO FEATURED ---------- */
+.hero{
+  margin:48px 0 64px;
+  display:grid;grid-template-columns:1.55fr 1fr;gap:2px;
+  border:1px solid var(--line);background:var(--line);
+}
+.hero-main,.hero-side{background:var(--bg2);position:relative;overflow:hidden;cursor:pointer}
+.hero-main{min-height:460px}
+.hero-main .img,.hero-side .img{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .7s ease;filter:grayscale(.2) contrast(1.05)}
+.hero-main:hover .img,.hero-side:hover .img{transform:scale(1.06)}
+.hero-main::after,.hero-side::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,12,.96) 0%,rgba(10,10,12,.25) 55%,transparent 100%)}
+.hero-txt{position:absolute;bottom:0;left:0;right:0;padding:34px;z-index:2}
+.hero-side{display:grid;grid-template-rows:1fr 1fr;gap:2px;background:var(--line);min-height:460px}
+.hero-side .cell{background:var(--bg2);position:relative;overflow:hidden}
+.hero-side .hero-txt{padding:22px}
+.kick{font-family:'Space Mono',monospace;font-size:.7rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:10px;display:inline-block}
+.hero-main h1{font-family:'Sora',sans-serif;font-weight:800;font-size:2.5rem;line-height:1.02;letter-spacing:-1.5px;margin-bottom:12px}
+.hero-side h3{font-weight:800;font-size:1.15rem;line-height:1.1;letter-spacing:-.5px}
+.meta{font-family:'Space Mono',monospace;font-size:.7rem;color:var(--muted);margin-top:12px;text-transform:uppercase;letter-spacing:1px}
+
+/* ---------- SECTION TITLE ---------- */
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;border-top:1px solid var(--line);padding-top:20px;margin-bottom:32px}
+.sec-head h2{font-family:'Archivo Black',sans-serif;font-size:1.3rem;letter-spacing:-.5px}
+.sec-head .all{font-family:'Space Mono',monospace;font-size:.72rem;color:var(--accent);text-transform:uppercase;letter-spacing:1px;cursor:pointer}
+
+/* ---------- GRID ---------- */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:38px 32px;margin-bottom:80px}
+.card{cursor:pointer;display:flex;flex-direction:column}
+.card .thumb{aspect-ratio:4/3;overflow:hidden;border:1px solid var(--line);position:relative;background:var(--bg2)}
+.card .thumb .img{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .6s ease;filter:grayscale(.25) contrast(1.05)}
+.card:hover .thumb .img{transform:scale(1.07)}
+.card .tag{position:absolute;top:0;left:0;background:var(--accent);color:#0a0a0c;font-family:'Space Mono',monospace;font-size:.62rem;font-weight:700;padding:5px 9px;text-transform:uppercase;letter-spacing:1px;z-index:2}
+.card h3{font-weight:600;font-size:1.12rem;line-height:1.2;letter-spacing:-.4px;margin:16px 0 8px;transition:color .2s}
+.card:hover h3{color:var(--accent)}
+.card p{font-size:.86rem;color:var(--muted);line-height:1.45}
+.card .meta{margin-top:auto;padding-top:12px}
+
+/* ---------- ARTICLE VIEW ---------- */
+.article{display:none;max-width:760px;margin:56px auto 90px;position:relative;z-index:2}
+.back{font-family:'Space Mono',monospace;font-size:.74rem;color:var(--accent);text-transform:uppercase;letter-spacing:1px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;margin-bottom:34px}
+.back:hover{gap:12px;transition:gap .2s}
+.article .kick{font-size:.74rem}
+.article h1{font-family:'Sora',sans-serif;font-weight:800;font-size:2.7rem;line-height:1.04;letter-spacing:-1.5px;margin:14px 0 18px}
+.article .lede{font-size:1.2rem;line-height:1.5;color:#c9c9cf;font-weight:300;margin-bottom:28px}
+.article .by{font-family:'Space Mono',monospace;font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:16px 0;margin-bottom:34px;display:flex;justify-content:space-between}
+.article .hero-img{width:100%;aspect-ratio:16/9;background-size:cover;background-position:center;border:1px solid var(--line);margin-bottom:14px;filter:contrast(1.05)}
+.article .cap{font-family:'Space Mono',monospace;font-size:.68rem;color:var(--muted);margin-bottom:40px}
+.article .body p{font-size:1.05rem;line-height:1.78;color:#dcdce0;margin-bottom:24px;font-weight:300}
+.article .body h2{font-family:'Sora',sans-serif;font-weight:800;font-size:1.4rem;letter-spacing:-.5px;margin:40px 0 14px}
+.article .pull{border-left:3px solid var(--accent);padding:6px 0 6px 24px;margin:36px 0;font-size:1.35rem;font-weight:600;line-height:1.3;letter-spacing:-.5px}
+
+/* ---------- FOOTER ---------- */
+footer{border-top:1px solid var(--line);margin-top:40px;position:relative;z-index:2}
+.foot{max-width:1240px;margin:0 auto;padding:56px 28px;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:30px}
+.foot .logo{font-size:2.6rem}
+.foot p{font-family:'Space Mono',monospace;font-size:.72rem;color:var(--muted);line-height:1.8;text-transform:uppercase;letter-spacing:1px}
+
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr}
+  .hero-side{min-height:auto}
+  .grid{grid-template-columns:1fr 1fr;gap:30px 22px}
+  .hero-main h1{font-size:2rem}
+  nav{display:none}
+}
+@media(max-width:560px){
+  .grid{grid-template-columns:1fr}
+  .bar{padding:16px 18px}
+  main{padding:0 18px}
+  .article h1{font-size:2rem}
+}
+</style>
+</head>
+<body>
+
+<div class="ticker">
+  <div class="track">
+    <span>◆ KEINEMUSIK ATERRIZA EN CAMPO MARTE</span>
+    <span>◆ AMELIE LENS CONFIRMA FECHA EN CDMX</span>
+    <span>◆ AGENDA RAVE · JUNIO 2026</span>
+    <span>◆ EL UNDERGROUND DE MONTERREY NO DUERME</span>
+    <span>◆ KEINEMUSIK ATERRIZA EN CAMPO MARTE</span>
+    <span>◆ AMELIE LENS CONFIRMA FECHA EN CDMX</span>
+    <span>◆ AGENDA RAVE · JUNIO 2026</span>
+    <span>◆ EL UNDERGROUND DE MONTERREY NO DUERME</span>
+  </div>
+</div>
+
+<header>
+  <div class="bar">
+    <div class="logo" onclick="goHome()"><span class="dot"></span>BEAT<b>LINE</b></div>
+    <nav>
+      <span onclick="goHome()">Inicio</span>
+      <span onclick="goHome()">Notas</span>
+      <span onclick="goHome()">Agenda</span>
+      <span onclick="goHome()">Artistas</span>
+    </nav>
+    <div class="live"><i></i> En vivo · CDMX</div>
+  </div>
+</header>
+
+<!-- ============ HOME ============ -->
+<main id="home">
+
+  <section class="hero">
+    <div class="hero-main" onclick="openArticle(0)">
+      <div class="img" style="background-image:url('https://images.unsplash.com/photo-1571266028243-e4733b0f0bb0?w=1200&q=80')"></div>
+      <div class="hero-txt">
+        <span class="kick">Portada · Eventos</span>
+        <h1>Keinemusik aterriza en Campo Marte: el rave del Mundial</h1>
+        <div class="meta">Jueves · CDMX · por Redacción BEATLINE</div>
+      </div>
+    </div>
+    <div class="hero-side">
+      <div class="cell" onclick="openArticle(1)">
+        <div class="img" style="background-image:url('https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&q=80')"></div>
+        <div class="hero-txt">
+          <span class="kick">Techno</span>
+          <h3>Amelie Lens vuelve a México con set extendido</h3>
+        </div>
+      </div>
+      <div class="cell" onclick="openArticle(2)">
+        <div class="img" style="background-image:url('https://images.unsplash.com/photo-1493676304819-0d7a8d026dcf?w=800&q=80')"></div>
+        <div class="hero-txt">
+          <span class="kick">Escena</span>
+          <h3>Monterrey: el norte que reescribe el house</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="sec-head">
+    <h2>Últimas notas</h2>
+    <span class="all">Ver todo →</span>
+  </div>
+
+  <section class="grid" id="grid"></section>
+</main>
+
+<!-- ============ ARTICLE ============ -->
+<article class="article" id="article"></article>
+
+<footer>
+  <div class="foot">
+    <div>
+      <div class="logo" style="margin-bottom:14px"><span class="dot"></span>BEAT<b>LINE</b></div>
+      <p>Música electrónica en México<br>Notas · Agenda · Cultura de club</p>
+    </div>
+    <p>© 2026 BEATLINE<br>CDMX · MX<br>Imperfecto pero publicado</p>
+  </div>
+</footer>
+
+<script>
+const articles = [
+  {
+    tag:"Eventos", kick:"Eventos",
+    title:"La espera terminó: Agents Of Time aterriza en CDMX",
+    lede:"El dúo italiano de Afterlife regresa a México con su live set de melodic techno en el Frontón Bucareli.",
+    by:"Redacción BEATLINE", date:"Jueves 5 jun · CDMX",
+    img:"https://res.cloudinary.com/dmwaryk7b/image/upload/v1780635253/agents-of-time-ravejungle_t4lpqd.jpg",
+    cap:"Agents Of Time se presenta en el Frontón Bucareli, CDMX.",
+    body:`<p>El dúo italiano Agents Of Time vuelve a la Ciudad de México este jueves 5 de junio de 2026 para presentarse en el Frontón Bucareli, en una noche que promete convertirse en una de las citas más esperadas del calendario electrónico capitalino. La presentación, programada a las nueve de la noche, llega tras una larga ausencia del proyecto en territorio mexicano y se anuncia no como un show convencional, sino como una experiencia inmersiva diseñada para envolver al público en un recorrido sonoro de principio a fin.</p><p>Integrado por Andrea Di Ceglie y Luigi Tutolo, Agents Of Time se ha consolidado como uno de los nombres más reconocibles del techno melódico contemporáneo. Su propuesta combina techno, house oscuro y elementos progresivos para construir sesiones que funcionan como narrativas completas: capas sonoras, transiciones precisas y una evolución constante que mantiene al asistente inmerso durante toda la velada. Su sello distintivo es el live set basado en hardware, una ejecución improvisada donde sintetizadores, cajas de ritmo y visuales se entrelazan en tiempo real.</p><div class="pull">Una propuesta diseñada para suspender el tiempo.</div><p>La trayectoria del dúo respalda la expectativa. Debutaron con el álbum Spread The Word en Stem Records en 2014, seguido de EPs para sellos de peso como Ellum Audio de Maceo Plex, Curle Recordings y su propia plataforma, Obscura. Su relación con Tale Of Us y sus múltiples apariciones en eventos de Afterlife los llevaron a firmar con el sello con el EP Dream Vision, además del tema Paradigm dentro de la compilación Realm Of Consciousness. Tracks como Polina, Zodiac y The Mirage los posicionaron en lo más alto de las listas globales del género.</p><p>El Frontón Bucareli, ubicado en Bucareli 118, Colonia Centro, Cuauhtémoc, se ha convertido en uno de los recintos predilectos de la escena electrónica de la CDMX. Su carácter industrial y su potencia de audio lo vuelven el escenario ideal para una propuesta tan envolvente como la de Agents Of Time, donde la arquitectura del lugar amplifica la intención inmersiva de cada set.</p><p>Los boletos están disponibles a través de Arema en distintas fases: Early Bird en 2,900 pesos, Fase 1 en 3,250 pesos y Venta Normal en 3,500 pesos, todos más cargos por servicio. Como suele ocurrir con este tipo de eventos, las primeras fases manejan cupo limitado, por lo que se recomienda asegurar entrada con anticipación.</p><p>La cita es clara: jueves 5 de junio, Frontón Bucareli, nueve de la noche. Quienes busquen una experiencia que vaya más allá de una noche de baile encontrarán en Agents Of Time una propuesta diseñada para suspender el tiempo. Boletos en Arema y toda la información oficial en las redes de Electric Line y Afterhouse.</p>`
+  },
+
+  {
+    tag:"Eventos", kick:"Portada · Eventos",
+    title:"Keinemusik aterriza en Campo Marte: el rave del Mundial",
+    lede:"El colectivo berlinés convierte la antesala del Mundial en una de las citas más esperadas del año para la escena mexicana.",
+    by:"Redacción BEATLINE", date:"Jueves · CDMX",
+    img:"https://images.unsplash.com/photo-1571266028243-e4733b0f0bb0?w=1200&q=80",
+    cap:"Campo Marte se prepara para recibir al colectivo Keinemusik.",
+    body:`<p>Aprovechando la fiebre futbolera que se vive en la capital, Campo Marte se transforma este jueves en pista de baile para recibir a Keinemusik, uno de los colectivos más influyentes del house melódico contemporáneo.</p>
+    <p>La cita llega en un momento donde la Ciudad de México se consolida como parada obligada de las giras internacionales de música electrónica, con un público cada vez más exigente y conocedor.</p>
+    <div class="pull">El Mundial trae fútbol, pero también convierte a CDMX en epicentro del rave.</div>
+    <h2>Qué esperar de la noche</h2>
+    <p>Más allá del cartel principal, la producción promete un montaje a la altura de los grandes festivales europeos: sonido envolvente, visuales inmersivas y una curaduría que conecta lo local con lo global.</p>
+    <p>Para la escena mexicana, eventos de este calibre son termómetro de hacia dónde se mueve la cultura de club en el país.</p>`
+  },
+  {
+    tag:"Techno", kick:"Techno",
+    title:"Amelie Lens vuelve a México con set extendido",
+    lede:"La belga regresa con una propuesta más larga e intensa que en su última visita.",
+    by:"Redacción BEATLINE", date:"Próximamente · CDMX",
+    img:"https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=1200&q=80",
+    cap:"Amelie Lens, referente del techno europeo.",
+    body:`<p>Una de las figuras más potentes del techno actual confirma su regreso a territorio mexicano, esta vez con un formato extendido que promete poner a prueba la resistencia de cualquier pista.</p>
+    <p>Su sonido —oscuro, hipnótico y de altísima energía— ha encontrado en México un público fiel que crece fecha tras fecha.</p>
+    <div class="pull">El techno europeo encontró casa en México.</div>
+    <p>Los detalles de venue y boletos se irán revelando en los próximos días.</p>`
+  },
+  {
+    tag:"Escena", kick:"Escena",
+    title:"Monterrey: el norte que reescribe el house",
+    lede:"Una nueva generación de productores regios está poniendo a la ciudad en el mapa electrónico nacional.",
+    by:"Redacción BEATLINE", date:"Reportaje · MTY",
+    img:"https://images.unsplash.com/photo-1493676304819-0d7a8d026dcf?w=1200&q=80",
+    cap:"La escena de Monterrey gana fuerza propia.",
+    body:`<p>Lejos del centralismo capitalino, Monterrey ha venido construyendo una identidad sonora propia, con colectivos, sellos y fiestas que ya no piden permiso a nadie.</p>
+    <p>El resultado es un house con acento norteño: cálido, contundente y con una comunidad que lo sostiene noche tras noche.</p>
+    <h2>Una escena que no copia</h2>
+    <p>Lo interesante del momento regio no es que imite a CDMX o a Europa, sino que está encontrando su propia voz dentro del mapa electrónico mexicano.</p>`
+  },
+  {
+    tag:"Agenda", kick:"Agenda",
+    title:"Agenda rave: lo que viene en junio 2026",
+    lede:"Las fechas que no te puedes perder este mes en la república.",
+    by:"Redacción BEATLINE", date:"Junio · MX",
+    img:"https://images.unsplash.com/photo-1574391884720-bbc3740c59d1?w=1200&q=80",
+    cap:"El calendario de junio viene cargado.",
+    body:`<p>Junio llega con una agenda apretada de eventos a lo largo del país. Desde clubes íntimos hasta producciones de gran formato, hay opciones para todos los perfiles de raver.</p>
+    <p>Te dejamos las fechas clave para que organices tu mes.</p>
+    <div class="pull">Más vale agenda llena que fin de semana en blanco.</div>`
+  },
+  {
+    tag:"Cultura", kick:"Cultura",
+    title:"Por qué el b2b se volvió el formato estrella",
+    lede:"Cuando dos DJs comparten cabina, la pista lo agradece.",
+    by:"Redacción BEATLINE", date:"Opinión",
+    img:"https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=1200&q=80",
+    cap:"El back-to-back se consolida como formato favorito.",
+    body:`<p>El back-to-back dejó de ser una rareza para convertirse en uno de los formatos más buscados en los carteles. La química entre dos artistas en cabina genera momentos irrepetibles.</p>
+    <p>Analizamos por qué el público y los promotores apuestan cada vez más por este formato.</p>`
+  },
+  {
+    tag:"Sellos", kick:"Sellos",
+    title:"Los sellos mexicanos que debes seguir en 2026",
+    lede:"Producción nacional con proyección internacional.",
+    by:"Redacción BEATLINE", date:"Lista · MX",
+    img:"https://images.unsplash.com/photo-1598653222000-6b7b7a552625?w=1200&q=80",
+    cap:"El catálogo nacional crece año con año.",
+    body:`<p>La producción electrónica hecha en México vive un momento de madurez. Varios sellos independientes están exportando un sonido con identidad propia.</p>
+    <p>Hicimos una selección de los proyectos que vale la pena tener en el radar este año.</p>`
+  }
+];
+
+function renderGrid(){
+  const g = document.getElementById('grid');
+  g.innerHTML = articles.map((a,i)=>`
+    <div class="card" onclick="openArticle(${i})">
+      <div class="thumb">
+        <span class="tag">${a.tag}</span>
+        <div class="img" style="background-image:url('${a.img}')"></div>
+      </div>
+      <h3>${a.title}</h3>
+      <p>${a.lede}</p>
+      <div class="meta">${a.date}</div>
+    </div>`).join('');
+}
+
+function openArticle(i){
+  const a = articles[i];
+  document.getElementById('article').innerHTML = `
+    <span class="back" onclick="goHome()">← Volver a notas</span>
+    <span class="kick">${a.kick}</span>
+    <h1>${a.title}</h1>
+    <p class="lede">${a.lede}</p>
+    <div class="by"><span>Por ${a.by}</span><span>${a.date}</span></div>
+    <div class="hero-img" style="background-image:url('${a.img}')"></div>
+    <div class="cap">${a.cap}</div>
+    <div class="body">${a.body}</div>`;
+  document.getElementById('home').style.display='none';
+  document.getElementById('article').style.display='block';
+  window.scrollTo(0,0);
+}
+function goHome(){
+  document.getElementById('article').style.display='none';
+  document.getElementById('home').style.display='block';
+  window.scrollTo(0,0);
+}
+renderGrid();
+</script>
+</body>
+</html>
