@@ -136,6 +136,9 @@ main{max-width:1240px;margin:0 auto;padding:0 28px;position:relative;z-index:2}
 .article h1{font-family:'Sora',sans-serif;font-weight:800;font-size:2.7rem;line-height:1.04;letter-spacing:-1.5px;margin:14px 0 18px}
 .article .lede{font-size:1.2rem;line-height:1.5;color:#c9c9cf;font-weight:300;margin-bottom:28px}
 .article .by{font-family:'Space Mono',monospace;font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:16px 0;margin-bottom:34px;display:flex;justify-content:space-between}
+.share-btn{color:var(--accent);cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:opacity .2s;background:none;border:none;font:inherit;text-transform:inherit;letter-spacing:inherit}
+.share-btn:hover{opacity:.75}
+.share-btn svg{width:15px;height:15px}
 .article .hero-img{width:100%;aspect-ratio:16/9;background-size:cover;background-position:center;border:1px solid var(--line);margin-bottom:14px;filter:contrast(1.05)}
 .article .cap{font-family:'Space Mono',monospace;font-size:.68rem;color:var(--muted);margin-bottom:40px}
 .article .body p{font-size:1.05rem;line-height:1.78;color:#dcdce0;margin-bottom:24px;font-weight:300}
@@ -425,14 +428,21 @@ function renderGrid(){
   }).join('');
 }
 
+function slugify(t){
+  return t.toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,60);
+}
 function openArticle(i){
   const a = articles[i];
+  // dirección propia de la nota (para compartir)
+  history.replaceState(null,'','#'+slugify(a.title));
   document.getElementById('article').innerHTML = `
     <span class="back" onclick="goHome()">← Volver a notas</span>
     <span class="kick">${a.kick||a.tag}</span>
     <h1>${a.title}</h1>
     <p class="lede">${a.lede}</p>
-    <div class="by"><span>${a.date}</span></div>
+    <div class="by"><span>${a.date}</span><button class="share-btn" onclick="shareNote(${i})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v7a1 1 0 001 1h14a1 1 0 001-1v-7"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v14"/></svg>Compartir</button></div>
     <div class="hero-img" style="background-image:url('${a.img}')"></div>
     <div class="cap">${a.cap||''}</div>
     <div class="body">${a.body}</div>`;
@@ -441,6 +451,7 @@ function openArticle(i){
   window.scrollTo(0,0);
 }
 function goHome(){
+  history.replaceState(null,'',location.pathname);
   document.getElementById('article').style.display='none';
   document.getElementById('home').style.display='block';
   window.scrollTo(0,0);
@@ -500,6 +511,26 @@ document.getElementById('nlOverlay').addEventListener('click', function(e){
 renderTicker();
 renderHero();
 renderGrid();
+
+function shareNote(i){
+  const a = articles[i];
+  const url = location.origin + location.pathname + '#' + slugify(a.title);
+  if(navigator.share){
+    navigator.share({title:a.title, text:a.lede, url:url}).catch(()=>{});
+  } else {
+    navigator.clipboard.writeText(url).then(()=>{
+      alert('Link copiado: ' + url);
+    });
+  }
+}
+
+// Si llegan con link directo a una nota (#slug), abrirla
+(function(){
+  const h = location.hash.replace('#','');
+  if(!h) return;
+  const idx = articles.findIndex(a => slugify(a.title) === h);
+  if(idx >= 0) openArticle(idx);
+})();
 </script>
 </body>
 </html>
