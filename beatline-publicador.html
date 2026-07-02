@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BEATLINE · Publicador v2</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&family=Sora:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0a0c;--bg2:#15151a;--bg3:#1d1d24;--ink:#f4f4f0;--muted:#8a8a92;--line:#2a2a32;--accent:#d6ff3f;--accent2:#ff3d7f;--ok:#3fffa8;--warn:#ffcf3f}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:'Sora',sans-serif;line-height:1.5;padding-bottom:80px}
+.top{background:var(--bg2);border-bottom:1px solid var(--line);padding:22px 28px;position:sticky;top:0;z-index:10}
+.top h1{font-family:'Archivo Black',sans-serif;font-size:1.3rem;letter-spacing:-.5px}
+.top h1 b{color:var(--accent)}
+.top p{color:var(--muted);font-size:.85rem;margin-top:4px}
+.wrap{max-width:820px;margin:0 auto;padding:28px}
+.step{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:26px;margin-bottom:22px}
+.step-num{font-family:'Space Mono',monospace;font-size:.72rem;color:var(--accent);text-transform:uppercase;letter-spacing:2px;margin-bottom:6px}
+.step h2{font-size:1.15rem;font-weight:800;letter-spacing:-.4px;margin-bottom:6px}
+.step .hint{color:var(--muted);font-size:.88rem;margin-bottom:18px}
+label{display:block;font-size:.82rem;font-weight:600;margin:16px 0 7px;letter-spacing:.2px}
+label .opt{color:var(--muted);font-weight:400;font-size:.76rem}
+input,textarea,select{width:100%;background:var(--bg3);border:1px solid var(--line);border-radius:9px;color:var(--ink);font-family:'Sora',sans-serif;font-size:.95rem;padding:12px 14px;transition:border .15s}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent)}
+textarea{resize:vertical;min-height:90px}
+textarea.big{min-height:200px;font-family:'Space Mono',monospace;font-size:.82rem;line-height:1.6}
+.count{font-size:.72rem;color:var(--muted);text-align:right;margin-top:4px}
+.count.over{color:var(--accent2)}
+.btn{background:var(--accent);color:#0a0a0c;border:none;border-radius:10px;font-family:'Sora',sans-serif;font-weight:800;font-size:.95rem;padding:14px 26px;cursor:pointer;transition:transform .1s,opacity .15s;letter-spacing:.2px}
+.btn:hover{transform:translateY(-1px)}
+.btn.sec{background:var(--bg3);color:var(--ink);border:1px solid var(--line)}
+.btn.full{width:100%;margin-top:8px}
+.btn.big{font-size:1.05rem;padding:17px}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.row>*{flex:1;min-width:160px}
+.msg{padding:12px 16px;border-radius:9px;font-size:.86rem;margin-top:14px;display:none}
+.msg.show{display:block}
+.msg.ok{background:rgba(63,255,168,.12);border:1px solid var(--ok);color:var(--ok)}
+.msg.err{background:rgba(255,61,127,.12);border:1px solid var(--accent2);color:var(--accent2)}
+.msg.warn{background:rgba(255,207,63,.1);border:1px solid var(--warn);color:var(--warn)}
+.preview{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:18px;margin-top:18px;display:none}
+.preview.show{display:block}
+.pv-pos{font-family:'Space Mono',monospace;font-size:.7rem;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.pv-tag{display:inline-block;background:var(--accent);color:#0a0a0c;font-family:'Space Mono',monospace;font-size:.62rem;font-weight:700;padding:4px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
+.pv-title{font-size:1.3rem;font-weight:800;letter-spacing:-.5px;line-height:1.15;margin-bottom:7px}
+.pv-lede{color:#c9c9cf;font-weight:300;margin-bottom:10px}
+.pv-meta{font-family:'Space Mono',monospace;font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.pv-img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:8px;margin-top:14px;border:1px solid var(--line)}
+.pv-img.missing{display:flex;align-items:center;justify-content:center;background:var(--bg3);color:var(--warn);font-size:.8rem;font-family:'Space Mono',monospace;text-align:center;padding:20px}
+.guide{background:rgba(214,255,63,.06);border:1px dashed rgba(214,255,63,.3);border-radius:10px;padding:16px 18px;margin-top:16px;font-size:.85rem;color:#cfcfd4}
+.guide b{color:var(--accent)}
+.guide ol{margin:10px 0 0 18px}
+.guide li{margin-bottom:7px}
+code{background:var(--bg);padding:2px 6px;border-radius:4px;font-family:'Space Mono',monospace;font-size:.8rem;color:var(--accent)}
+.divider{text-align:center;color:var(--muted);font-size:.78rem;margin:18px 0;font-family:'Space Mono',monospace;letter-spacing:1px;text-transform:uppercase}
+.cascade{background:rgba(214,255,63,.05);border:1px solid rgba(214,255,63,.2);border-radius:10px;padding:14px 16px;margin-top:14px;font-size:.82rem;color:#cfcfd4}
+.cascade b{color:var(--accent)}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <h1>BEAT<b>LINE</b> · Publicador v2</h1>
+  <p>Tu nota nueva entra siempre como portada. Las demás recorren solas.</p>
+</div>
+
+<div class="wrap">
+
+  <div class="step">
+    <div class="step-num">Paso 1</div>
+    <h2>Carga tu web actual</h2>
+    <p class="hint">Sube tu <code>index.html</code>. La nota nueva se suma a las que ya tienes.</p>
+    <input type="file" id="fileIn" accept=".html">
+    <div class="msg" id="loadMsg"></div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">Paso 2</div>
+    <h2>Llena la nota</h2>
+    <p class="hint">Pega el JSON del agente y se llena solo. O llena a mano.</p>
+
+    <label>Pega aquí el JSON del agente <span class="opt">(opcional — autollena todo)</span></label>
+    <textarea class="big" id="jsonIn" placeholder='{ "tag": "Eventos", "title": "...", ... }'></textarea>
+    <button class="btn sec full" onclick="parseJson()">⬇ Autollenar campos desde el JSON</button>
+    <div class="msg" id="jsonMsg"></div>
+
+    <div class="divider">— o llena a mano —</div>
+
+    <div class="row">
+      <div>
+        <label>Categoría</label>
+        <select id="f_tag">
+          <option>Eventos</option><option>Techno</option><option>House</option>
+          <option>Escena</option><option>Agenda</option><option>Cultura</option>
+          <option>Sellos</option><option>Festivales</option><option>Lanzamientos</option>
+        </select>
+      </div>
+      <div>
+        <label>Fecha y ciudad</label>
+        <input id="f_date" placeholder="Jueves 12 jun · CDMX">
+      </div>
+    </div>
+
+    <label>Título</label>
+    <input id="f_title" placeholder="Keinemusik aterriza en Campo Marte" oninput="cnt('f_title','c_title',70)">
+    <div class="count" id="c_title"></div>
+
+    <label>Lede <span class="opt">(resumen de 1-2 líneas bajo el título)</span></label>
+    <textarea id="f_lede" placeholder="El colectivo berlinés convierte la antesala del Mundial en..." oninput="cnt('f_lede','c_lede',160)"></textarea>
+    <div class="count" id="c_lede"></div>
+
+    <label>Firma</label>
+    <input id="f_by" value="Redacción BEATLINE">
+
+    <label>Imagen principal <span class="opt">(URL de Cloudinary)</span></label>
+    <input id="f_img" placeholder="https://res.cloudinary.com/.../foto.jpg">
+    <div class="msg warn" id="imgMsg"></div>
+
+    <label>Pie de foto</label>
+    <input id="f_cap" placeholder="Keinemusik se presenta en Campo Marte.">
+
+    <label>Segunda imagen <span class="opt">(opcional — aparece a mitad de la nota, URL de Cloudinary)</span></label>
+    <input id="f_img2" placeholder="https://res.cloudinary.com/.../foto2.jpg">
+
+    <label>Post de Instagram <span class="opt">(opcional — el comunicado oficial / la fuente; se muestra interactivo al final de la nota)</span></label>
+    <input id="f_ig" placeholder="https://www.instagram.com/p/XXXXXXXX/">
+
+    <label>Cuerpo de la nota <span class="opt">(en HTML: &lt;p&gt;, &lt;h2&gt;, &lt;div class="pull"&gt;)</span></label>
+    <textarea class="big" id="f_body" placeholder="<p>Primer párrafo...</p>"></textarea>
+  </div>
+
+  <div class="step">
+    <div class="step-num">Paso 3</div>
+    <h2>Revisa cómo se verá</h2>
+    <p class="hint">Tu nota nueva siempre entra como la portada grande (estelar).</p>
+    <button class="btn sec full" onclick="doPreview()">👁 Ver previa</button>
+    <div class="preview" id="preview"></div>
+    <div class="cascade">
+      <b>Cómo funciona la cascada:</b> tu nota nueva entra como <b>portada grande</b>. La que estaba de portada baja a <b>mediana</b>, y así todo recorre una posición. Siempre se ve fresco, tipo Mixmag.
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">Paso 4</div>
+    <h2>Publica</h2>
+    <p class="hint">Genera tu <code>index.html</code> con la nota nueva en portada.</p>
+    <button class="btn big full" onclick="generate()">⚡ Generar archivo para GitHub</button>
+    <div class="msg" id="genMsg"></div>
+    <div class="guide" id="guide" style="display:none">
+      <b>Último paso — subir a GitHub:</b>
+      <ol>
+        <li>Se descargó tu <code>index.html</code> nuevo.</li>
+        <li>Entra a tu repo <b>beatline-web</b> en GitHub.</li>
+        <li>Clic en el archivo <code>index.html</code> → ícono de lápiz (Edit) → o usa "Upload files" y suelta el nuevo encima.</li>
+        <li>Abajo, dale al botón verde <b>Commit changes</b>.</li>
+        <li>Netlify actualiza <b>beatline.mx</b> solo en segundos. ✨</li>
+      </ol>
+    </div>
+  </div>
+
+</div>
+
+<script>
+let fileContent = null;
+
+document.getElementById('fileIn').addEventListener('change', function(e){
+  const file = e.target.files[0];
+  if(!file) return;
+  const r = new FileReader();
+  r.onload = ev => {
+    fileContent = ev.target.result;
+    const m = document.getElementById('loadMsg');
+    if(fileContent.includes('const articles')){
+      m.className='msg ok show'; m.textContent='✓ Web cargada. Detecté tus notas actuales.';
+    } else {
+      m.className='msg err show'; m.textContent='⚠ Este archivo no parece la web de BEATLINE. ¿Es el index.html correcto?';
+      fileContent=null;
+    }
+  };
+  r.readAsText(file);
+});
+
+function cnt(id,cid,max){
+  const v=document.getElementById(id).value.length;
+  const el=document.getElementById(cid);
+  el.textContent=v+' / '+max;
+  el.className= v>max ? 'count over' : 'count';
+}
+
+function parseJson(){
+  const raw=document.getElementById('jsonIn').value.trim();
+  const m=document.getElementById('jsonMsg');
+  if(!raw){m.className='msg err show';m.textContent='Pega primero el JSON.';return;}
+  let clean=raw.replace(/```json/g,'').replace(/```/g,'').trim();
+  try{
+    const o=JSON.parse(clean);
+    if(o.tag) document.getElementById('f_tag').value=o.tag;
+    document.getElementById('f_title').value=o.title||'';
+    document.getElementById('f_lede').value=o.lede||'';
+    document.getElementById('f_date').value=o.date||'';
+    document.getElementById('f_by').value=o.by||'Redacción BEATLINE';
+    document.getElementById('f_img').value=(o.img&&o.img!=='PEGAR_URL_CLOUDINARY_AQUI')?o.img:'';
+    document.getElementById('f_cap').value=o.cap||'';
+    document.getElementById('f_img2').value=(o.img2&&!o.img2.startsWith('PEGAR'))?o.img2:'';
+    document.getElementById('f_ig').value=o.ig||'';
+    document.getElementById('f_body').value=o.body||'';
+    cnt('f_title','c_title',70);cnt('f_lede','c_lede',160);
+    m.className='msg ok show';m.textContent='✓ Campos llenados. Revisa todo y agrega la foto de Cloudinary si falta.';
+    checkImg();
+  }catch(err){
+    m.className='msg err show';m.textContent='✗ El JSON tiene un error de formato. Revisa que esté completo y bien copiado.';
+  }
+}
+
+function checkImg(){
+  const v=document.getElementById('f_img').value.trim();
+  const m=document.getElementById('imgMsg');
+  if(!v||v==='PEGAR_URL_CLOUDINARY_AQUI'){
+    m.className='msg warn show';m.textContent='⚠ Falta la foto. Súbela a Cloudinary, copia su URL y pégala aquí.';
+  } else { m.className='msg'; }
+}
+document.getElementById('f_img').addEventListener('input',checkImg);
+
+function getData(){
+  return {
+    tag:document.getElementById('f_tag').value,
+    title:document.getElementById('f_title').value.trim(),
+    lede:document.getElementById('f_lede').value.trim(),
+    date:document.getElementById('f_date').value.trim(),
+    by:document.getElementById('f_by').value.trim()||'Redacción BEATLINE',
+    img:document.getElementById('f_img').value.trim(),
+    cap:document.getElementById('f_cap').value.trim(),
+    img2:document.getElementById('f_img2').value.trim(),
+    ig:document.getElementById('f_ig').value.trim(),
+    body:document.getElementById('f_body').value.trim()
+  };
+}
+
+function doPreview(){
+  const d=getData();
+  const pv=document.getElementById('preview');
+  const img = d.img ? `<img class="pv-img" src="${d.img}" onerror="this.outerHTML='<div class=\\'pv-img missing\\'>La imagen no cargó. Revisa la URL de Cloudinary.</div>'">` : `<div class="pv-img missing">Sin imagen todavía</div>`;
+  pv.innerHTML=`<div class="pv-pos">▲ Entrará como: PORTADA GRANDE (estelar)</div>
+    <span class="pv-tag">${d.tag}</span>
+    <div class="pv-title">${d.title||'(sin título)'}</div>
+    <div class="pv-lede">${d.lede||''}</div>
+    <div class="pv-meta">${d.date||''} · ${d.by}</div>${img}`;
+  pv.className='preview show';
+}
+
+function generate(){
+  const m=document.getElementById('genMsg');
+  if(!fileContent){m.className='msg err show';m.textContent='✗ Primero sube tu index.html en el Paso 1.';return;}
+  const d=getData();
+  if(!d.title||!d.body){m.className='msg err show';m.textContent='✗ Faltan campos: la nota necesita al menos título y cuerpo.';return;}
+  if(!d.img){m.className='msg warn show';m.textContent='⚠ Vas sin imagen. La nota se verá incompleta. Si quieres seguir igual, vuelve a darle al botón.';
+    if(!generate._warned){generate._warned=true;return;}}
+
+  const esc = s => (s||'').replace(/\\/g,'\\\\').replace(/`/g,'\\`').replace(/\$\{/g,'\\${');
+  const noteObj =
+`  {
+    tag:"${esc(d.tag)}", kick:"${esc(d.tag)}",
+    title:"${esc(d.title).replace(/"/g,'\\"')}",
+    lede:"${esc(d.lede).replace(/"/g,'\\"')}",
+    by:"${esc(d.by).replace(/"/g,'\\"')}", date:"${esc(d.date).replace(/"/g,'\\"')}",
+    img:"${esc(d.img).replace(/"/g,'\\"')}",
+    cap:"${esc(d.cap).replace(/"/g,'\\"')}",${d.img2 ? `
+    img2:"${esc(d.img2).replace(/"/g,'\\"')}",` : ''}${d.ig ? `
+    ig:"${esc(d.ig).replace(/"/g,'\\"')}",` : ''}
+    body:\`${esc(d.body)}\`
+  },
+`;
+  const marker='const articles = [';
+  const idx=fileContent.indexOf(marker);
+  if(idx===-1){m.className='msg err show';m.textContent='✗ No encontré dónde van las notas en tu archivo. ¿Es el index.html correcto?';return;}
+  const insertAt=idx+marker.length;
+  const newContent=fileContent.slice(0,insertAt)+'\n'+noteObj+fileContent.slice(insertAt);
+
+  const blob=new Blob([newContent],{type:'text/html'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;a.download='index.html';a.click();
+  URL.revokeObjectURL(url);
+
+  m.className='msg ok show';m.textContent='✓ ¡Listo! Se descargó tu index.html con la nota nueva en portada.';
+  document.getElementById('guide').style.display='block';
+  generate._warned=false;
+}
+</script>
+</body>
+</html>
