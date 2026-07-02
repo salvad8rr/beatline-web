@@ -368,9 +368,8 @@ function renderHero(){
     <div class="hero-main" onclick="openArticle(0)">
       <div class="img" style="background-image:url('${big.img}')"></div>
       <div class="hero-txt">
-        <span class="kick">Portada · ${big.tag}</span>
         <h1>${big.title}</h1>
-        <div class="meta">${big.date} · por ${big.by}</div>
+        <div class="meta">${big.date}</div>
       </div>
     </div>
     <div class="hero-side">`;
@@ -433,7 +432,7 @@ function openArticle(i){
     <span class="kick">${a.kick||a.tag}</span>
     <h1>${a.title}</h1>
     <p class="lede">${a.lede}</p>
-    <div class="by"><span>Por ${a.by}</span><span>${a.date}</span></div>
+    <div class="by"><span>${a.date}</span></div>
     <div class="hero-img" style="background-image:url('${a.img}')"></div>
     <div class="cap">${a.cap||''}</div>
     <div class="body">${a.body}</div>`;
