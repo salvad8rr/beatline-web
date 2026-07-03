@@ -171,10 +171,11 @@ main{max-width:1240px;margin:0 auto;padding:0 28px;position:relative;z-index:2}
 .nl-icon svg{width:100%;height:100%}
 .nl-card h2{font-family:'Sora',sans-serif;font-weight:800;font-size:1.9rem;letter-spacing:-.8px;margin-bottom:10px}
 .nl-card p{color:var(--muted);font-size:.98rem;max-width:440px;margin:0 auto 26px;line-height:1.55}
-.nl-row{display:flex;gap:10px;max-width:440px;margin:0 auto;flex-wrap:wrap}
+.nl-row{display:flex;flex-direction:column;gap:12px;max-width:400px;margin:0 auto;align-items:center}
+.nl-row input{width:100%}
 .nl-row input{flex:1;min-width:180px;background:var(--bg);border:1px solid var(--line);border-radius:10px;color:var(--ink);font-family:'Sora',sans-serif;font-size:.95rem;padding:14px 16px}
 .nl-row input:focus{outline:none;border-color:var(--accent)}
-.nl-row button{background:var(--accent);color:#0a0a0c;border:none;border-radius:10px;font-family:'Sora',sans-serif;font-weight:800;font-size:.95rem;padding:14px 28px;cursor:pointer;transition:transform .1s}
+.nl-row button{background:var(--accent);color:#0a0a0c;border:none;border-radius:10px;font-family:'Sora',sans-serif;font-weight:800;font-size:.95rem;padding:14px 40px;cursor:pointer;transition:transform .1s}
 .nl-row button:hover{transform:translateY(-1px)}
 @media(max-width:560px){.nl-card{padding:40px 22px}.nl-card h2{font-size:1.5rem}}
 .article .body-img{width:100%;height:auto;display:block;border:1px solid var(--line);margin:38px 0}
@@ -343,7 +344,7 @@ footer{border-top:1px solid var(--line);margin-top:40px;position:relative;z-inde
 //  El Publicador agrega notas nuevas aqui automaticamente.
 // ====================================================================
 const articles = [
-  {
+{
     tag:"Eventos", kick:"Eventos",
     title:"Keinemusik en CDMX: A tres semanas de la noche que lo cambió todo",
     lede:"Recordamos la histórica jornada en el Autódromo Hermanos Rodríguez que unió el triunfo mundialista con la mejor fiesta del año.",
@@ -354,8 +355,7 @@ const articles = [
     ig:"https://www.instagram.com/p/DZiLn7njMgZ/?igsh=N2Fvbm00MmhxMmIx",
     body:`<p>La espera terminó y la conexión fue absoluta. Keinemusik, el colectivo berlinés que ha redefinido el sonido del house melódico a nivel mundial, regresó a la Ciudad de México para ofrecer una presentación que ya se perfila como uno de los momentos más memorables del año en la escena electrónica local. El Autódromo Hermanos Rodríguez fue el escenario elegido para este encuentro que congregó a miles de fanáticos.</p><p>Resulta curioso recordar que esta jornada histórica coincidió precisamente con el día en que México se impuso ante Sudáfrica en el partido inaugural del Mundial, creando una atmósfera de celebración doble que culminó en una fiesta masiva. Tras el triunfo deportivo, el Autódromo se transformó en el epicentro de la cultura electrónica, donde el colectivo alemán ofreció una fiestota que marcó un antes y un después en la memoria de todos los asistentes.</p><div class="pull">A tres semanas de aquel encuentro, el sentimiento colectivo permanece intacto: lo vivido con Keinemusik sigue siendo insuperable.</div><p>Hoy, a fecha de 2 de julio, han transcurrido aproximadamente tres semanas desde aquel evento, y el sentimiento colectivo permanece intacto. Este texto no pretende ser un simple recuento, sino un recordatorio de que, aunque el tiempo avance, la energía vivida durante esa noche en el Autódromo Hermanos Rodríguez sigue resonando con fuerza en nuestra comunidad.</p><p>Desde el momento en que Adam Port, Rampa y &ME tomaron los controles, la energía fue eléctrica. El uso de drones formando figuras icónicas en el firmamento sobre el Autódromo Hermanos Rodríguez creó una atmósfera inmersiva, fusionando la precisión técnica con la libertad creativa que distingue al colectivo.</p><p>El impacto de este evento va más allá de la música. Es un testimonio del crecimiento y la exigencia de la comunidad electrónica mexicana, que ha demostrado estar a la altura de las audiencias más conocedoras del mundo. La logística impecable garantizó que cada rincón del Autódromo Hermanos Rodríguez vibrara en sintonía con el colectivo.</p><p>Con este recuerdo fresco, Keinemusik consolida su vínculo especial con la Ciudad de México. La energía vivida deja una vara muy alta para futuras producciones, reafirmando que, cuando la calidad artística se une a una visión de espectáculo de primer nivel, el resultado es una experiencia que trasciende el tiempo y el espacio.</p>`
   },
-
-  {
+{
     tag:"Festivales", kick:"Festivales",
     title:"DJ Mag revela el Top 100 Festivals 2026: Tomorrowland es el líder",
     lede:"La prestigiosa revista DJ Mag ha publicado su ranking anual, confirmando a Tomorrowland como el festival número uno del mundo una vez más.",
@@ -366,8 +366,7 @@ const articles = [
     ig:"https://www.instagram.com/p/DaS3QoJjR4N/?igsh=MXZwa2Y4YWFzMzZibA==",
     body:`<p>El ecosistema de los festivales electrónicos tiene una nueva referencia oficial para este año. La prestigiosa revista DJ Mag ha publicado su esperada lista Top 100 Festivals correspondiente a la edición 2026, reafirmando una vez más la hegemonía de Tomorrowland. El evento belga se alza nuevamente con la primera posición, consolidándose como la experiencia definitiva para los amantes de la música electrónica a nivel global.</p><p>El podio y los primeros lugares de la lista reflejan la inmensa competitividad y diversidad del mercado actual. El ranking pone especial énfasis en el impacto cultural y la escala de producciones de gran formato. Además del indiscutible liderazgo de Tomorrowland, figuras como EDC Las Vegas, UNTOLD y Ultra Music Festival de Miami mantienen su posición como pilares fundamentales dentro de este listado.</p><div class="pull">Tomorrowland sigue siendo la referencia absoluta en producción y experiencia inmersiva para los fans de la música electrónica a nivel global.</div><p>Este ranking no solo celebra la música, sino que analiza la infraestructura, la experiencia del asistente y la relevancia de los festivales en la cultura popular contemporánea. Para muchos fans, esta lista funciona como una brújula indispensable para planificar sus viajes y experiencias musicales a lo largo del año. La inclusión de eventos como EDC Las Vegas y UNTOLD subraya el crecimiento exponencial que los festivales han tenido en regiones fuera de Europa, diversificando el mapa sonoro global.</p><p>El dominio constante de Tomorrowland no es sorpresa, dado su impecable diseño escénico, la calidad de su producción técnica y una curaduría artística que abarca todos los subgéneros de la electrónica. Sin embargo, el ascenso y la estabilidad de otros festivales en el top indica que el público busca cada vez más experiencias inmersivas y comunidades sólidas. La escena está en constante evolución y este listado es un reflejo fiel de la pasión que mueve a millones de personas alrededor del mundo.</p><p>A medida que nos adentramos en la segunda mitad de 2026, el Top 100 Festivals de DJ Mag sirve tanto como un reconocimiento al esfuerzo de producción como una invitación a seguir explorando los eventos que están definiendo el futuro de nuestra industria. ¿Logrará algún festival destronar al gigante belga en las próximas ediciones? Solo el tiempo lo dirá, pero por ahora, Tomorrowland sigue siendo la referencia absoluta a batir.</p>`
   },
-
-  {
+{
     tag:"Festivales", kick:"Festivales",
     title:"Futur México Festival revela un lineup histórico en Monterrey",
     lede:"La primera edición de Futur México en Parque Fundidora confirma a titanes como Dixon, Maceo Plex y Carl Craig para su debut los días 13 y 14 de noviembre.",
@@ -378,8 +377,7 @@ const articles = [
     ig:"https://www.instagram.com/p/DXprvPrDStJ/?igsh=MTJpNzZ1eXd1MTI2bg==",
     body:`<p>El esperado desembarco del festival italiano Futur en tierras mexicanas ya tiene rostro y sonido. Tras meses de expectativa, la organización ha revelado finalmente el lineup para su primera edición en el país, consolidando a Monterrey como el epicentro de la música electrónica global para este 2026. La cita está programada para los días 13 y 14 de noviembre en el emblemático Parque Fundidora, un recinto que ha sido pieza clave en la identidad industrial y cultural de la ciudad.</p><p>El cartel destaca por una curaduría que equilibra la veteranía con la vanguardia, presentando a nombres fundamentales que han definido la evolución de la escena internacional. Entre los actos estelares que aterrizarán en Nuevo León se encuentran leyendas del calibre de Carl Craig, Dixon, Damian Lazarus, Maceo Plex y Marcel Dettmann. Además, la propuesta incluye a figuras clave como Vintage Culture, Skream, KI/KI, ANNA, Âme DJ, Carlita, Chloé Caillet y Moodymann, prometiendo una experiencia sónica de alto impacto.</p><div class="pull">La llegada de este festival no es casual: es el resultado de una alianza estratégica que busca transformar el ADN industrial de Monterrey en catedrales sonoras para la nueva generación.</div><p>La expansión a México es el resultado de una alianza estratégica entre los fundadores del evento italiano y plataformas locales como Lostnights Events y Mandala Group, reconocidas por su trabajo en proyectos como Day Zero y Tehmplo. Según han compartido los organizadores, la elección de Monterrey responde a una conexión natural con su ciudad natal, Turín, al compartir ambos un ADN industrial que ahora se transforma en catedrales sonoras para la nueva generación de clubbers.</p><p>Más allá de la música, el festival se ha comprometido con un modelo regenerativo en materia ambiental, integrando tecnología de vanguardia y prácticas de sostenibilidad en su infraestructura. El diseño arquitectónico de los escenarios buscará reflejar esta herencia industrial, fusionándola con elementos visuales inspirados en el misticismo y la cultura mexicana, creando una atmósfera inmersiva única.</p><p>El evento, que se perfila como uno de los hitos más importantes del año, busca posicionarse como algo más que un festival de música: una plataforma de innovación y cultura electrónica. Con la revelación de este cartel, la expectativa por la venta de boletos ha alcanzado niveles máximos, reafirmando que la escena regiomontana está lista para albergar un evento de talla internacional.</p>`
   },
-
-  {
+{
     tag:"Techno", kick:"Techno",
     title:"UNREAL debuta en México: Nico Moreno encabeza la noche más dura del año",
     lede:"El colectivo alemán de hard techno llega al Pabellón Oeste de CDMX el 19 de septiembre con Winson, KUKO, Johannes Schuster y Celice completando el cartel.",
@@ -390,8 +388,7 @@ const articles = [
     ig:"https://www.instagram.com/p/DZLMf1XCCd6/?img_index=7&igsh=OHZoZGQ2cndtenR0",
     body:`<p>El hard techno mexicano está por vivir uno de sus momentos más importantes: UNREAL, el colectivo alemán reconocido como uno de los conceptos más extremos y fieles al espíritu rave del techno europeo, debutará oficialmente en México el sábado 19 de septiembre de 2026 en el Pabellón Oeste de la Ciudad de México, con una producción presentada por OCESA, Insomniac y Rebels MX.</p><p>Al frente del cartel estará Nico Moreno, el productor francés que en los últimos años pasó de los circuitos underground europeos a encabezar festivales masivos gracias a sets extremadamente intensos, BPM acelerados y una estética rave oscura e industrial. Su presencia en esta primera edición no es un detalle menor: define el tono de toda la noche y traza un puente directo entre la raíz europea del techno más duro y una ciudad que lleva años demostrando que está lista para recibirlo sin concesiones.</p><div class="pull">La lógica de la noche no es la de un cartel de artistas individuales, sino la de capítulos consecutivos de una misma narrativa sonora.</div><p>El lineup se completa con Winson, KUKO, Johannes Schuster y Celice, todos parte activa del concepto UNREAL, con estilos que transitan entre el hard techno, la crudeza industrial y la tensión constante que define estas experiencias. Una propuesta diseñada para vivirse de principio a fin.</p><p>Nacido en Alemania, UNREAL se ha convertido en una referencia global del hard techno por transformar espacios convencionales en templos industriales de música y tecnología: ritmos que superan los 145 BPM, una estética inspirada en la cultura underground de Berlín y producciones inmersivas donde los láseres, las luces estroboscópicas y los visuales minimalistas son protagonistas.</p><p>La llegada a CDMX forma parte de su North America Tour 2026, gira que arrancó tras su debut en el continente con un takeover del escenario wasteLAND en EDC Las Vegas, y que también incluye paradas en Washington D.C., San Francisco, Toronto, Nueva York y Chicago. Que la capital mexicana figure en esa ruta confirma su peso creciente como uno de los mercados electrónicos más importantes de Latinoamérica, donde el hard techno dejó de ser nicho para convertirse en fenómeno de nuevas generaciones.</p><p>Los boletos se encuentran disponibles a través de Ticketmaster México y taquillas del inmueble, luego de la preventa Banamex realizada en junio. Hasta el momento no se han confirmado horarios oficiales ni fases adicionales del lineup, información que se espera conforme se acerque la fecha.</p>`
   },
-
-  {
+{
     tag:"Festivales", kick:"Festivales",
     title:"Faltan 15 días para Tomorrowland 2026 y su nueva era \"Consciencia\"",
     lede:"El primer fin de semana arranca el 17 de julio en Boom con más de 600 artistas, 16 escenarios y el esperado debut de Calvin Harris.",
@@ -402,8 +399,7 @@ const articles = [
     ig:"https://www.instagram.com/reel/DaS70iltFCs/?igsh=NHMweW8zNWEwMTBw",
     body:`<p>La cuenta regresiva entró en su recta final: faltan solo 15 días para que arranque el primer fin de semana de Tomorrowland 2026, que se celebrará del 17 al 19 de julio en el parque De Schorre de Boom, Bélgica, con un segundo fin de semana programado del 24 al 26 del mismo mes. El festival más influyente de la música electrónica global se prepara para recibir nuevamente a cientos de miles de asistentes de todo el mundo.</p><p>La edición 2026 llega bajo una temática inédita: Consciencia, un universo narrativo que la organización describe como una dimensión misteriosa donde seis emociones primarias —el asombro, el amor, la ira, la alegría, el deseo y la tristeza— forman los cimientos de la existencia, cada una con su propio lenguaje visual y simbólico. El concepto no se limitará a Bélgica: funcionará como hilo conductor de los eventos de la marca durante 2026 y 2027, incluyendo el debut de Tomorrowland Thailand en diciembre.</p><p>El cartel supera los 600 artistas distribuidos en 16 escenarios. El mainstage reunirá a David Guetta, Martin Garrix, Armin van Buuren, Hardwell, Fisher, John Summit, Miss Monique, Indira Paganotto, Dimitri Vegas &amp; Like Mike y Chase &amp; Status, entre otros. Uno de los momentos más esperados será el debut de Calvin Harris en el festival, una ausencia histórica que finalmente se resuelve en esta edición.</p><div class="pull">Es la primera edición desde el incendio que destruyó el mainstage en 2025: el regreso del escenario principal se anticipa como una revancha creativa.</div><p>La programación también refleja el peso del techno y los sonidos underground: el escenario Atmosphere recibirá a Sara Landry, Nico Moreno, I Hate Models y el sello ARTCORE de Indira Paganotto, mientras que la edición estrena un escenario dedicado al deep y afro house. Entre los b2b anunciados destacan DJ Tennis con Vintage Culture, Avalon Emerson con Ben UFO y Sasha con Young Marco.</p><p>Esta edición tiene además un componente simbólico: es la primera desde el incendio que destruyó por completo el mainstage en 2025, apenas horas antes de abrir puertas. Aquella crisis, resuelta contra reloj y sin cancelar el festival, se convirtió en una de las historias más comentadas de la industria.</p><p>Los boletos para ambos fines de semana se encuentran agotados desde las ventas de enero, aunque el festival mantiene activa su plataforma oficial de reventa Pearl y la lista de espera en tomorrowland.com. Para quienes lo vivirán a distancia, se espera nuevamente la transmisión en streaming a través del sitio oficial, la app y One World Radio, con emisiones en directo durante los seis días de festival.</p>`
   },
-
-  {
+{
     tag:"House", kick:"House",
     title:"OMNI SHOWCASE® regresa a Tempo Club con doble ambiente de house",
     lede:"OMNIPOTENCE® anuncia nueva edición de su serie en Querétaro: Sexynasty Corp y Zenith en el Club, Monclair y Alessandrini en la Terrace.",
@@ -414,8 +410,7 @@ const articles = [
     ig:"https://www.instagram.com/reel/DaRMatFP74W/?igsh=NW40Mnp4ZHZ1YnMw",
     body:`<p>OMNIPOTENCE®, el colectivo queretano que se ha consolidado como uno de los motores del house en el Bajío, anunció una nueva edición de su serie OMNI SHOWCASE®, que se llevará a cabo el viernes 10 de julio de 2026 en Tempo Club, el recinto de música electrónica ubicado en Avenida Universidad 351, en Santiago de Querétaro.</p><p>El formato de esta edición aprovecha la arquitectura del venue para ofrecer dos ambientes simultáneos. En el Club, el cuarto principal, estarán Sexynasty Corp y Zenith, encargados de llevar la energía al terreno más oscuro y contundente de la noche. En la Terrace, el line-up lo completan Monclair y Alessandrini, con una propuesta orientada al groove y a los matices más melódicos del house.</p><div class="pull">Dos ambientes, una sola noche: el house queretano vuelve a demostrar por qué ya no es satélite de nadie.</div><p>Monclair, productor y DJ radicado en la Ciudad de México, se ha ganado un lugar en la escena nacional gracias a un sonido que combina tonos melódicos con ritmos enérgicos de house, además de una técnica versátil que le ha permitido moverse entre distintos formatos de club. Su presencia en la terraza anticipa uno de los sets más esperados de la noche.</p><p>La serie OMNI SHOWCASE® se ha convertido en la plataforma con la que OMNIPOTENCE® presenta talento emergente y consolidado en formatos íntimos, siguiendo la línea de eventos anteriores del colectivo, que han incluido ediciones con acceso limitado y entradas agotadas en distintos recintos de Querétaro. Tempo Club, por su parte, se ha posicionado como uno de los espacios de referencia para la electrónica en la ciudad, con programación constante de artistas locales e internacionales.</p><p>El anuncio llega en un momento de crecimiento sostenido para la escena electrónica queretana, que en los últimos años ha construido una identidad propia, con colectivos, venues y públicos que sostienen una oferta cada vez más ambiciosa.</p><p>Los accesos y la información oficial del evento se encuentran disponibles a través de las redes de OMNIPOTENCE® y de Tempo Club. Como referencia de ediciones anteriores, el colectivo suele manejar aforos limitados, por lo que se recomienda asegurar la entrada con anticipación.</p>`
   },
-
-  {
+{
     tag:"Eventos", kick:"Eventos",
     title:"RÜFÜS DU SOL regresa a la CDMX este 4 de julio",
     lede:"El trío australiano trae su North America Tour al Estadio GNP Seguros con Maribou State y Peces Raros.",
@@ -425,8 +420,7 @@ const articles = [
     img2:"https://res.cloudinary.com/dmwaryk7b/image/upload/v1783038126/IMG_4213_xfipjj.jpg",
     body:`<p>El trío australiano RÜFÜS DU SOL regresa a la Ciudad de México para uno de los conciertos electrónicos más esperados del verano. La cita es el sábado 4 de julio de 2026 en el Estadio GNP Seguros, dentro de su North America Tour 2026, con un montaje audiovisual a gran escala que la banda ha prometido como su producción más ambiciosa en el país. El show arranca a las 21:00 horas y contará con dos invitados especiales: Maribou State y el dúo argentino Peces Raros.</p><p>Integrado por Tyrone Lindqvist, Jon George y James Hunt, RÜFÜS DU SOL se ha consolidado como uno de los proyectos más queridos por el público mexicano tras sus pasos por festivales como Vaivén y Corona Capital. Su propuesta fusiona electrónica, indie y deep house con instrumentación en vivo y sintetizadores atmosféricos, creando experiencias sensoriales envolventes que han convertido cada una de sus presentaciones en algo más cercano a un ritual emocional que a un concierto convencional.</p><div class="pull">La magia de Innerbloom, Alive y On My Knees llega a la CDMX.</div><p>La trayectoria del grupo respalda la expectativa. Con cuatro álbumes de estudio, incluido su más reciente material de larga duración, Surrender, la banda realizó una gira por 60 ciudades y vendió 700,000 boletos a nivel mundial. Su sensibilidad melódica los ha llevado a colaborar y ser remezclados por nombres como Adriatique, y su influencia se extiende a su propio sello, Rose Avenue, así como al festival boutique Sundream, que celebran en Tulum y Baja California.</p><p>Para esta presentación, RÜFÜS DU SOL no solo traerá himnos como Innerbloom, Alive, On My Knees y Underwater, sino una producción visual completamente renovada. Los asistentes pueden esperar un despliegue de láseres y pantallas LED que acompañan la narrativa emocional del grupo en vivo, en el marco de un estadio que se presta para una experiencia de gran formato.</p><p>El Estadio GNP Seguros, anteriormente conocido como Foro Sol, es uno de los recintos para conciertos masivos más importantes de la capital. Su capacidad y renovación reciente lo convierten en el escenario ideal para el show más grande de la banda en México, donde la atmósfera creada por el trío promete envolver a miles de asistentes.</p><p>Los boletos están disponibles a través de Ticketmaster, con precios que van desde los 980 hasta los 3,314 pesos según la zona, ya con cargos por servicio. La cita es el sábado 4 de julio en el Estadio GNP Seguros. Toda la información oficial y detalles de acceso se mantienen actualizados en los canales oficiales del evento.</p>`
   },
-
-  {
+{
     tag:"Eventos", kick:"Eventos",
     title:"Solomun confirma su regreso a Tehmplo Tulum para enero de 2027",
     lede:"El ícono del house y melodic techno anuncia una presentación exclusiva en el corazón de la selva de Tulum para iniciar el año con la mejor energía.",
@@ -437,8 +431,7 @@ const articles = [
     ig:"https://www.instagram.com/reel/DZj_DjSMMPj/?igsh=MTZhbDFnZGtjbm9wOQ==",
     body:`<p>La temporada electrónica en la Riviera Maya comienza a tomar forma con uno de los anuncios más esperados por la comunidad internacional. Solomun, el icónico DJ y productor bosnio-alemán, ha confirmado oficialmente su regreso a Tulum para el próximo 7 de enero de 2027, presentándose en el recinto Tehmplo.</p><div class="pull">Solomun se ha consolidado como un referente absoluto de la música house y melodic techno, dominando pistas de baile en todo el mundo.</div><p>Conocido por su capacidad para dominar las pistas de baile con sus sets extendidos y una curaduría musical inigualable, Solomun se ha consolidado como un referente absoluto de la música house y melodic techno. Su estilo, caracterizado por bajos profundos y melodías eufóricas, ha definido la identidad de sellos discográficos influyentes como Diynamic, fundado por él mismo en 2005.</p><p>El evento tendrá lugar en Tehmplo, un espacio diseñado para integrarse armónicamente con la selva de Tulum. Este venue ha ganado relevancia por ofrecer una experiencia inmersiva donde la producción detallada y la atmósfera natural se combinan para crear encuentros únicos. La presentación es organizada por LostNights y Mandala Group, quienes garantizan una producción de alto calibre.</p><p>Aunque por el momento el anuncio se limita a la participación de Solomun, la expectativa ya es alta debido a la lealtad de su base de fans y la tradición que rodea a sus presentaciones en tierras mexicanas. El evento está programado para comenzar a las 19:00 horas.</p><div class="pull">Los interesados en asistir ya pueden acceder a la preinscripción para boletos prioritarios a través de los canales oficiales.</div><p>Los interesados en asistir ya pueden acceder a la preinscripción para boletos prioritarios a través de los canales oficiales vinculados al anuncio. Dado el historial de alta demanda para las presentaciones del productor en Tulum, se recomienda asegurar el acceso con antelación.</p>`
   },
-
-  {
+{
     tag:"Festivales", kick:"Festivales",
     title:"HUMAN Festival 2027 despierta: cita en Querétaro el 27 de marzo",
     lede:"El festival boutique anuncia su edición más ambiciosa con tres escenarios, 30+ artistas y cuatro actos internacionales por revelar.",
@@ -449,8 +442,7 @@ const articles = [
     ig:"https://www.instagram.com/reel/DZoeeB3scBZ/?igsh=amxzc2NrZXo0bHl2",
     body:`<p>Algo ha despertado. Con un teaser cinematográfico cargado de simbolismo, HUMAN Festival anunció oficialmente el inicio de un nuevo capítulo: su edición 2027 se celebrará el 27 de marzo en Querétaro, en lo que la organización describe como su entrega más grande y ambiciosa hasta la fecha. Bajo el concepto The Awakening of Sound, el festival boutique presentado por Vivo Sessions abre su nuevo ciclo con un mensaje envuelto en misterio: una frecuencia, una pregunta, una señal.</p><p>HUMAN se ha consolidado como una de las propuestas más distintivas del circuito electrónico mexicano gracias a su formato boutique, que privilegia la curaduría y la experiencia por encima de la masividad. Celebrado en un viñedo del corazón de la Ruta del Vino y el Queso de Querétaro, uno de los corredores turísticos más representativos del Bajío, el festival convierte el entorno natural en protagonista: aquí no se transita el espacio, se habita. La geografía, el paisaje y la energía colectiva forman parte esencial del ritual.</p><div class="pull">Una frecuencia. Una pregunta. Una señal. Lo que viene lo cambia todo.</div><p>Para 2027, la organización adelantó las primeras señales de lo que será esta nueva edición: tres escenarios, más de 30 artistas y cuatro actos internacionales ya confirmados, cuyos nombres se revelarán en próximos anuncios. A esto se suma la Ruta del Arte, Queso y Vino, una de las experiencias insignia que integra gastronomía local, catas y propuestas de diseño dentro de la jornada, reafirmando la apuesta del festival por una vivencia sensorial completa más allá de la música.</p><p>El concepto detrás de HUMAN siempre ha trascendido el formato de concierto tradicional. Sus ediciones previas han combinado música electrónica con arte inmersivo, bienestar, gastronomía gourmet, mercados de diseño y pool parties, en jornadas extensas pensadas para que el público se sumerja por completo. La edición 2027 promete profundizar en esa filosofía con una producción elevada y una narrativa conceptual que, según el propio festival, marca el comienzo de un nuevo capítulo.</p><p>El teaser audiovisual que da inicio a esta etapa fue realizado por El Nene Films y Estudio Vivo, con la colaboración de Áurea Concept Boutique y Bodegas Vaivén, marcando el tono cinematográfico y contemplativo que distingue la identidad visual del festival. Más que un simple adelanto, la pieza funciona como la primera convocatoria de una historia que apenas comienza a develarse.</p><p>HUMAN Festival 2027 se celebrará el 27 de marzo en Querétaro. Por ahora, la organización invita a su comunidad a mantenerse atenta a los próximos anuncios, donde se revelarán line-up, fases de boletos y detalles de la experiencia. Lo que viene, prometen, lo cambia todo. Toda la información oficial se mantendrá actualizada en las redes de HUMAN Festival y Vivo Sessions.</p>`
   },
-
-  {
+{
     tag:"Festivales", kick:"Festivales",
     title:"Última hora: Cercle Festival México 2026 queda cancelado",
     lede:"La edición de Los Cabos, prevista para noviembre, se cancela por serias dificultades financieras tras 10 años de historia.",
@@ -458,76 +450,6 @@ const articles = [
     img:"https://res.cloudinary.com/dmwaryk7b/image/upload/v1783034021/IMG_4193_ohqzco.jpg",
     cap:"Cercle Festival cancela su edición mexicana en San José del Cabo.",
     body:`<p>Golpe inesperado para la escena electrónica mexicana. Cercle anunció oficialmente a través de redes sociales la cancelación de su festival en México, originalmente programado para noviembre en San José del Cabo, Baja California Sur. El equipo señala que las condiciones planeadas ya no permiten entregar el evento de forma adecuada ni operarlo bajo los estándares de Cercle, en lo que describen como uno de los momentos más difíciles de su historia.</p><p>La edición mexicana estaba prevista para los días 14 y 15 de noviembre de 2026 en CRANIA, un recinto al aire libre enclavado entre el desierto y las aguas del Pacífico. El evento se perfilaba como uno de los más ambiciosos del proyecto: 12 horas diarias de música con dos escenarios simultáneos, uno a la orilla del océano y otro escondido en un jardín de palmeras. La propuesta, concebida como una experiencia boutique e íntima, había generado gran expectativa entre el público mexicano.</p><div class="pull">Las condiciones planeadas ya no permiten operar el evento bajo los estándares de Cercle.</div><p>La razón detrás de la cancelación es de peso. Cercle atraviesa serias dificultades financieras que ahora obligan a cancelar el festival en México, después de diez años de historia y más de 200 shows. La organización ha sido transparente sobre la presión económica detrás de la decisión: en su mensaje hablan abiertamente de la situación y piden paciencia en torno a los reembolsos, dirigiéndose a su audiencia más como comunidad que como público.</p><p>Cercle se consolidó durante la última década como uno de los proyectos más queridos de la electrónica mundial gracias a su formato único. Desde Ben Böhmer flotando sobre Capadocia en un globo aerostático, hasta Boris Brejcha transformando el Grand Palais, o Monolink musicalizando un atardecer en las Maldivas, el proyecto no solo filmó sets: creó momentos memorables. Esa misma visión lo llevó a expandirse de shows filmados individuales a festivales de varios días con line-ups amplios y múltiples escenarios.</p><p>La caída de la edición mexicana contrasta con la salud de su matriz europea. La edición 2026 en Francia está programada para del 22 al 24 de mayo en el Musée de l'Air et de l'Espace de París Le Bourget, con tres días, tres escenarios y 44 artistas. El revés en México refleja lo difícil que se ha vuelto sostener este tipo de proyectos bajo los mismos estándares, incluso para una marca con alcance global y años de confianza acumulada.</p><p>De cara al futuro, la organización mantiene un canal abierto con su comunidad. Cercle pide a quienes puedan apoyar económicamente que donen a través de cercle.io, mientras que a quienes no pueden hacerlo se les anima a compartir el mensaje. Los asistentes que ya adquirieron boletos deberán estar atentos a los canales oficiales del festival para conocer los detalles del proceso de reembolso. Por ahora, queda la incógnita sobre si el proyecto mexicano podrá retomarse en el futuro.</p>`
-  },
-
-  {
-    tag:"Eventos", kick:"Portada · Eventos",
-    title:"Keinemusik aterriza en Campo Marte: el rave del Mundial",
-    lede:"El colectivo berlinés convierte la antesala del Mundial en una de las citas más esperadas del año para la escena mexicana.",
-    by:"Redacción BEATLINE", date:"Jueves · CDMX",
-    img:"https://images.unsplash.com/photo-1571266028243-e4733b0f0bb0?w=1200&q=80",
-    cap:"Campo Marte se prepara para recibir al colectivo Keinemusik.",
-    body:`<p>Aprovechando la fiebre futbolera que se vive en la capital, Campo Marte se transforma este jueves en pista de baile para recibir a Keinemusik, uno de los colectivos más influyentes del house melódico contemporáneo.</p>
-    <p>La cita llega en un momento donde la Ciudad de México se consolida como parada obligada de las giras internacionales de música electrónica, con un público cada vez más exigente y conocedor.</p>
-    <div class="pull">El Mundial trae fútbol, pero también convierte a CDMX en epicentro del rave.</div>
-    <h2>Qué esperar de la noche</h2>
-    <p>Más allá del cartel principal, la producción promete un montaje a la altura de los grandes festivales europeos: sonido envolvente, visuales inmersivas y una curaduría que conecta lo local con lo global.</p>
-    <p>Para la escena mexicana, eventos de este calibre son termómetro de hacia dónde se mueve la cultura de club en el país.</p>`
-  },
-  {
-    tag:"Techno", kick:"Techno",
-    title:"Amelie Lens vuelve a México con set extendido",
-    lede:"La belga regresa con una propuesta más larga e intensa que en su última visita.",
-    by:"Redacción BEATLINE", date:"Próximamente · CDMX",
-    img:"https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=1200&q=80",
-    cap:"Amelie Lens, referente del techno europeo.",
-    body:`<p>Una de las figuras más potentes del techno actual confirma su regreso a territorio mexicano, esta vez con un formato extendido que promete poner a prueba la resistencia de cualquier pista.</p>
-    <p>Su sonido —oscuro, hipnótico y de altísima energía— ha encontrado en México un público fiel que crece fecha tras fecha.</p>
-    <div class="pull">El techno europeo encontró casa en México.</div>
-    <p>Los detalles de venue y boletos se irán revelando en los próximos días.</p>`
-  },
-  {
-    tag:"Escena", kick:"Escena",
-    title:"Monterrey: el norte que reescribe el house",
-    lede:"Una nueva generación de productores regios está poniendo a la ciudad en el mapa electrónico nacional.",
-    by:"Redacción BEATLINE", date:"Reportaje · MTY",
-    img:"https://images.unsplash.com/photo-1493676304819-0d7a8d026dcf?w=1200&q=80",
-    cap:"La escena de Monterrey gana fuerza propia.",
-    body:`<p>Lejos del centralismo capitalino, Monterrey ha venido construyendo una identidad sonora propia, con colectivos, sellos y fiestas que ya no piden permiso a nadie.</p>
-    <p>El resultado es un house con acento norteño: cálido, contundente y con una comunidad que lo sostiene noche tras noche.</p>
-    <h2>Una escena que no copia</h2>
-    <p>Lo interesante del momento regio no es que imite a CDMX o a Europa, sino que está encontrando su propia voz dentro del mapa electrónico mexicano.</p>`
-  },
-  {
-    tag:"Agenda", kick:"Agenda",
-    title:"Agenda rave: lo que viene en junio 2026",
-    lede:"Las fechas que no te puedes perder este mes en la república.",
-    by:"Redacción BEATLINE", date:"Junio · MX",
-    img:"https://images.unsplash.com/photo-1574391884720-bbc3740c59d1?w=1200&q=80",
-    cap:"El calendario de junio viene cargado.",
-    body:`<p>Junio llega con una agenda apretada de eventos a lo largo del país. Desde clubes íntimos hasta producciones de gran formato, hay opciones para todos los perfiles de raver.</p>
-    <p>Te dejamos las fechas clave para que organices tu mes.</p>
-    <div class="pull">Más vale agenda llena que fin de semana en blanco.</div>`
-  },
-  {
-    tag:"Cultura", kick:"Cultura",
-    title:"Por qué el b2b se volvió el formato estrella",
-    lede:"Cuando dos DJs comparten cabina, la pista lo agradece.",
-    by:"Redacción BEATLINE", date:"Opinión",
-    img:"https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=1200&q=80",
-    cap:"El back-to-back se consolida como formato favorito.",
-    body:`<p>El back-to-back dejó de ser una rareza para convertirse en uno de los formatos más buscados en los carteles. La química entre dos artistas en cabina genera momentos irrepetibles.</p>
-    <p>Analizamos por qué el público y los promotores apuestan cada vez más por este formato.</p>`
-  },
-  {
-    tag:"Sellos", kick:"Sellos",
-    title:"Los sellos mexicanos que debes seguir en 2026",
-    lede:"Producción nacional con proyección internacional.",
-    by:"Redacción BEATLINE", date:"Lista · MX",
-    img:"https://images.unsplash.com/photo-1598653222000-6b7b7a552625?w=1200&q=80",
-    cap:"El catálogo nacional crece año con año.",
-    body:`<p>La producción electrónica hecha en México vive un momento de madurez. Varios sellos independientes están exportando un sonido con identidad propia.</p>
-    <p>Hicimos una selección de los proyectos que vale la pena tener en el radar este año.</p>`
   }
 ];
 
