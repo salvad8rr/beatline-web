@@ -62,6 +62,23 @@ header{position:sticky;top:0;z-index:60;background:rgba(10,10,12,.92);backdrop-f
 .search-bar .si{max-width:1240px;margin:0 auto;padding:16px 28px;display:flex;gap:10px}
 .search-bar input{flex:1;background:var(--bg3);border:1px solid var(--line);border-radius:9px;color:var(--ink);font-family:'Sora',sans-serif;font-size:.95rem;padding:11px 14px}
 .search-bar input:focus{outline:none;border-color:var(--accent)}
+/* Selector de idioma */
+.lang{position:relative}
+.lang-btn{background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:6px;color:var(--ink);padding:4px;font-size:1.15rem;line-height:1}
+.lang-btn:hover{opacity:.8}
+.lang-btn .chev{width:10px;height:10px;opacity:.6}
+.lang-menu{position:absolute;top:130%;right:0;background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:6px;min-width:180px;display:none;flex-direction:column;gap:2px;z-index:120;box-shadow:0 12px 30px rgba(0,0,0,.5)}
+.lang-menu.open{display:flex}
+.lang-menu button{background:none;border:none;color:var(--ink);cursor:pointer;display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:7px;font-family:'Sora',sans-serif;font-size:.9rem;font-weight:600;text-align:left;transition:background .15s}
+.lang-menu button:hover{background:var(--bg3)}
+.lang-menu button .fl{font-size:1.15rem}
+.lang-menu button.active{color:var(--accent)}
+/* Ocultar la barra fea de Google Translate */
+.goog-te-banner-frame,.skiptranslate{display:none!important}
+body{top:0!important}
+#google_translate_element{display:none}
+.goog-tooltip,.goog-tooltip:hover{display:none!important}
+.goog-text-highlight{background:none!important;box-shadow:none!important}
 
 .ticker{background:var(--accent);color:#0a0a0c;overflow:hidden;white-space:nowrap;border-bottom:1px solid var(--line)}
 .ticker .track{display:inline-block;padding:5px 0;animation:scroll 28s linear infinite;font-family:'Space Mono',monospace;font-weight:700;font-size:.66rem;text-transform:uppercase;letter-spacing:1px}
@@ -147,6 +164,19 @@ main{max-width:1240px;margin:0 auto;padding:0 28px;position:relative;z-index:2}
 .article .body p{font-size:1.05rem;line-height:1.78;color:#dcdce0;margin-bottom:24px;font-weight:300}
 .article .body h2{font-family:'Sora',sans-serif;font-weight:800;font-size:1.4rem;letter-spacing:-.5px;margin:40px 0 14px}
 .article .pull{border-left:3px solid var(--accent);padding:6px 0 6px 24px;margin:36px 0;font-size:1.35rem;font-weight:600;line-height:1.3;letter-spacing:-.5px}
+.nl-section{max-width:1240px;margin:20px auto 0;padding:0 28px;position:relative;z-index:2}
+.nl-card{background:linear-gradient(135deg,rgba(168,85,247,.14),rgba(168,85,247,.04));border:1px solid var(--line);border-radius:16px;padding:52px 32px;text-align:center;position:relative;overflow:hidden}
+.nl-card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--accent)}
+.nl-icon{width:56px;height:56px;margin:0 auto 18px;color:var(--accent)}
+.nl-icon svg{width:100%;height:100%}
+.nl-card h2{font-family:'Sora',sans-serif;font-weight:800;font-size:1.9rem;letter-spacing:-.8px;margin-bottom:10px}
+.nl-card p{color:var(--muted);font-size:.98rem;max-width:440px;margin:0 auto 26px;line-height:1.55}
+.nl-row{display:flex;gap:10px;max-width:440px;margin:0 auto;flex-wrap:wrap}
+.nl-row input{flex:1;min-width:180px;background:var(--bg);border:1px solid var(--line);border-radius:10px;color:var(--ink);font-family:'Sora',sans-serif;font-size:.95rem;padding:14px 16px}
+.nl-row input:focus{outline:none;border-color:var(--accent)}
+.nl-row button{background:var(--accent);color:#0a0a0c;border:none;border-radius:10px;font-family:'Sora',sans-serif;font-weight:800;font-size:.95rem;padding:14px 28px;cursor:pointer;transition:transform .1s}
+.nl-row button:hover{transform:translateY(-1px)}
+@media(max-width:560px){.nl-card{padding:40px 22px}.nl-card h2{font-size:1.5rem}}
 .article .body-img{width:100%;height:auto;display:block;border:1px solid var(--line);margin:38px 0}
 .ig-wrap{margin:38px 0 10px}
 .ig-label{font-family:'Space Mono',monospace;font-size:.7rem;color:var(--accent);text-transform:uppercase;letter-spacing:2px;margin-bottom:14px}
@@ -196,6 +226,19 @@ footer{border-top:1px solid var(--line);margin-top:40px;position:relative;z-inde
       <button class="icon-btn" onclick="toggleSearch()" aria-label="Buscar">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
       </button>
+      <div class="lang">
+        <button class="lang-btn" onclick="toggleLang(event)" aria-label="Idioma">
+          <span id="langFlag">🇲🇽</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="lang-menu" id="langMenu">
+          <button onclick="setLang('es','🇲🇽')"><span class="fl">🇲🇽</span> Español</button>
+          <button onclick="setLang('en','🇺🇸')"><span class="fl">🇺🇸</span> English</button>
+          <button onclick="setLang('fr','🇫🇷')"><span class="fl">🇫🇷</span> Français</button>
+          <button onclick="setLang('de','🇩🇪')"><span class="fl">🇩🇪</span> Deutsch</button>
+          <button onclick="setLang('pt','🇧🇷')"><span class="fl">🇧🇷</span> Português</button>
+        </div>
+      </div>
       <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menú">
         <span></span><span></span><span></span>
       </button>
@@ -266,6 +309,20 @@ footer{border-top:1px solid var(--line);margin-top:40px;position:relative;z-inde
     </div>
   </div>
 </div>
+
+<section class="nl-section">
+  <div class="nl-card">
+    <div class="nl-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg>
+    </div>
+    <h2>No te pierdas ni un beat</h2>
+    <p>Tu dosis semanal de la escena electrónica en México. Noticias, line ups y festivales, directo en tu correo.</p>
+    <div class="nl-row">
+      <input type="email" placeholder="tu@correo.com">
+      <button onclick="document.getElementById('nlOverlay')&&document.getElementById('nlOverlay').classList.add('show')">Suscribirme</button>
+    </div>
+  </div>
+</section>
 
 <footer>
   <div class="foot">
@@ -524,6 +581,7 @@ function openArticle(i){
     <p class="lede">${a.lede}</p>
     <div class="by"><span>${a.date}</span><button class="share-btn" onclick="shareNote(${i})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v7a1 1 0 001 1h14a1 1 0 001-1v-7"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v14"/></svg>Compartir</button></div>
     ${(() => { const s = statsFor(a.title); return `<div class="stats">
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>${s.views}</span>
       <span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>${s.likes}</span>
       <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>${s.comments}</span>
       <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v7a1 1 0 001 1h14a1 1 0 001-1v-7"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v14"/></svg>${s.shares}</span>
@@ -600,14 +658,15 @@ renderHero();
 renderGrid();
 
 function statsFor(title){
-  // Cifras estables por nota: 1k-3k likes, comentarios y compartidos proporcionales
+  // Cifras estables por nota. Views siempre es el número más alto.
   let h = 0;
   for(let i=0;i<title.length;i++){ h = (h*31 + title.charCodeAt(i)) >>> 0; }
   const likes = 1000 + (h % 2001);              // 1000 - 3000
   const comments = Math.round(likes * (0.03 + (h % 37)/1000));   // ~3-6.7%
   const shares = Math.round(likes * (0.09 + (h % 53)/1000));     // ~9-14%
+  const views = likes * (5 + (h % 4)) + (h % 900);   // 5x-8x los likes = siempre el mayor
   const fmt = n => n >= 1000 ? (n/1000).toFixed(1).replace('.0','') + 'k' : n;
-  return {likes: fmt(likes), comments: comments, shares: fmt(shares)};
+  return {views: fmt(views), likes: fmt(likes), comments: comments, shares: fmt(shares)};
 }
 function buildBody(a){
   // Limpieza: quitar marcadores de cita que a veces se cuelan del agente
@@ -653,5 +712,48 @@ function shareNote(i){
   if(idx >= 0) openArticle(idx);
 })();
 </script>
+<div id="google_translate_element"></div>
+<script>
+function googleTranslateElementInit(){
+  new google.translate.TranslateElement({
+    pageLanguage:'es',
+    includedLanguages:'es,en,fr,de,pt',
+    autoDisplay:false
+  },'google_translate_element');
+}
+function toggleLang(e){
+  e.stopPropagation();
+  document.getElementById('langMenu').classList.toggle('open');
+}
+function setLang(lang, flag){
+  document.getElementById('langFlag').textContent = flag;
+  document.getElementById('langMenu').classList.remove('open');
+  // Aplicar traducción vía el combo oculto de Google
+  const tryset = () => {
+    const sel = document.querySelector('.goog-te-combo');
+    if(sel){
+      sel.value = lang;
+      sel.dispatchEvent(new Event('change'));
+      return true;
+    }
+    return false;
+  };
+  if(!tryset()) setTimeout(tryset, 900);
+  try{ localStorage.setItem('bl_lang', JSON.stringify({lang,flag})); }catch(e){}
+}
+// cerrar el menú al tocar fuera
+document.addEventListener('click', e=>{
+  const m=document.getElementById('langMenu');
+  if(m && m.classList.contains('open') && !e.target.closest('.lang')) m.classList.remove('open');
+});
+// recordar idioma elegido
+window.addEventListener('load', ()=>{
+  try{
+    const saved = JSON.parse(localStorage.getItem('bl_lang')||'null');
+    if(saved && saved.lang !== 'es') setTimeout(()=>setLang(saved.lang, saved.flag), 1200);
+  }catch(e){}
+});
+</script>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
