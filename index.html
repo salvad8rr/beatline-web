@@ -144,7 +144,7 @@ main{max-width:1240px;margin:0 auto;padding:0 28px;position:relative;z-index:2}
 .article .body p{font-size:1.05rem;line-height:1.78;color:#dcdce0;margin-bottom:24px;font-weight:300}
 .article .body h2{font-family:'Sora',sans-serif;font-weight:800;font-size:1.4rem;letter-spacing:-.5px;margin:40px 0 14px}
 .article .pull{border-left:3px solid var(--accent);padding:6px 0 6px 24px;margin:36px 0;font-size:1.35rem;font-weight:600;line-height:1.3;letter-spacing:-.5px}
-.article .body-img{width:100%;aspect-ratio:16/9;background-size:cover;background-position:center;border:1px solid var(--line);margin:38px 0;filter:contrast(1.05)}
+.article .body-img{width:100%;height:auto;display:block;border:1px solid var(--line);margin:38px 0}
 .ig-wrap{margin:44px 0 10px}
 .ig-label{font-family:'Space Mono',monospace;font-size:.7rem;color:var(--accent);text-transform:uppercase;letter-spacing:2px;margin-bottom:14px}
 .ig-embed{display:flex;justify-content:center}
@@ -157,7 +157,8 @@ footer{border-top:1px solid var(--line);margin-top:40px;position:relative;z-inde
 
 @media(max-width:900px){
   .hero{grid-template-columns:1fr}
-  .hero-side{min-height:auto}
+  .hero-side{min-height:auto;grid-template-rows:none}
+  .hero-side .cell{min-height:230px}
   .grid{grid-template-columns:1fr 1fr;gap:30px 22px}
   .hero-main h1{font-size:2rem}
   .bar-actions .socials{display:none}
@@ -539,7 +540,7 @@ function buildBody(a){
   let out = '';
   parts.forEach((p, idx) => {
     out += p + '</p>';
-    if(idx === mid - 1) out += `<div class="body-img" style="background-image:url('${a.img2}')"></div>`;
+    if(idx === mid - 1) out += `<img class="body-img" src="${a.img2}" alt="">`;
   });
   return out;
 }
