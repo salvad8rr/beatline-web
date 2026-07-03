@@ -148,7 +148,7 @@ main{max-width:1240px;margin:0 auto;padding:0 28px;position:relative;z-index:2}
 .article .body h2{font-family:'Sora',sans-serif;font-weight:800;font-size:1.4rem;letter-spacing:-.5px;margin:40px 0 14px}
 .article .pull{border-left:3px solid var(--accent);padding:6px 0 6px 24px;margin:36px 0;font-size:1.35rem;font-weight:600;line-height:1.3;letter-spacing:-.5px}
 .article .body-img{width:100%;height:auto;display:block;border:1px solid var(--line);margin:38px 0}
-.ig-wrap{margin:44px 0 10px}
+.ig-wrap{margin:38px 0 10px}
 .ig-label{font-family:'Space Mono',monospace;font-size:.7rem;color:var(--accent);text-transform:uppercase;letter-spacing:2px;margin-bottom:14px}
 .ig-embed{display:flex;justify-content:center}
 .ig-embed iframe{border-radius:8px!important}
@@ -495,7 +495,7 @@ function openArticle(i){
     <img class="hero-img" src="${a.img}" alt="">
     <div class="cap">${a.cap||''}</div>
     <div class="body">${buildBody(a)}</div>
-    ${a.ig ? `<div class="ig-wrap"><div class="ig-label">La fuente · Instagram</div><div class="ig-embed"><blockquote class="instagram-media" data-instgrm-permalink="${a.ig}" data-instgrm-version="14" style="margin:0 auto;max-width:540px;width:100%"></blockquote></div></div>` : ''}`;
+    ${a.ig ? `<div class="ig-wrap"><div class="ig-embed"><blockquote class="instagram-media" data-instgrm-permalink="${a.ig}" data-instgrm-version="14" style="margin:0 auto;max-width:540px;width:100%"></blockquote></div></div>` : ''}`;
   if(a.ig) loadIgEmbed();
   document.getElementById('home').style.display='none';
   document.getElementById('article').style.display='block';
