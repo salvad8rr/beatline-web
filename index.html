@@ -64,7 +64,7 @@ header{position:sticky;top:0;z-index:60;background:rgba(10,10,12,.92);backdrop-f
 .search-bar input:focus{outline:none;border-color:var(--accent)}
 
 .ticker{background:var(--accent);color:#0a0a0c;overflow:hidden;white-space:nowrap;border-bottom:1px solid var(--line)}
-.ticker .track{display:inline-block;padding:9px 0;animation:scroll 28s linear infinite;font-family:'Space Mono',monospace;font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:1px}
+.ticker .track{display:inline-block;padding:5px 0;animation:scroll 28s linear infinite;font-family:'Space Mono',monospace;font-weight:700;font-size:.66rem;text-transform:uppercase;letter-spacing:1px}
 .ticker .track span{margin:0 26px}
 @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
@@ -139,12 +139,15 @@ main{max-width:1240px;margin:0 auto;padding:0 28px;position:relative;z-index:2}
 .share-btn{color:var(--accent);cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:opacity .2s;background:none;border:none;font:inherit;text-transform:inherit;letter-spacing:inherit}
 .share-btn:hover{opacity:.75}
 .share-btn svg{width:15px;height:15px}
-.article .hero-img{width:100%;aspect-ratio:16/9;background-size:cover;background-position:center;border:1px solid var(--line);margin-bottom:14px;filter:contrast(1.05)}
+.stats{font-family:'Space Mono',monospace;font-size:.72rem;color:var(--muted);letter-spacing:1px;display:flex;gap:22px;align-items:center;border-bottom:1px solid var(--line);padding:14px 0;margin:-20px 0 34px}
+.stats span{display:inline-flex;align-items:center;gap:7px}
+.stats svg{width:15px;height:15px}
+.article .hero-img{width:100%;height:auto;display:block;border:1px solid var(--line);margin-bottom:14px}
 .article .cap{font-family:'Space Mono',monospace;font-size:.68rem;color:var(--muted);margin-bottom:40px}
 .article .body p{font-size:1.05rem;line-height:1.78;color:#dcdce0;margin-bottom:24px;font-weight:300}
 .article .body h2{font-family:'Sora',sans-serif;font-weight:800;font-size:1.4rem;letter-spacing:-.5px;margin:40px 0 14px}
 .article .pull{border-left:3px solid var(--accent);padding:6px 0 6px 24px;margin:36px 0;font-size:1.35rem;font-weight:600;line-height:1.3;letter-spacing:-.5px}
-.article .body-img{width:100%;aspect-ratio:16/9;background-size:cover;background-position:center;border:1px solid var(--line);margin:38px 0;filter:contrast(1.05)}
+.article .body-img{width:100%;height:auto;display:block;border:1px solid var(--line);margin:38px 0}
 .ig-wrap{margin:44px 0 10px}
 .ig-label{font-family:'Space Mono',monospace;font-size:.7rem;color:var(--accent);text-transform:uppercase;letter-spacing:2px;margin-bottom:14px}
 .ig-embed{display:flex;justify-content:center}
@@ -157,7 +160,8 @@ footer{border-top:1px solid var(--line);margin-top:40px;position:relative;z-inde
 
 @media(max-width:900px){
   .hero{grid-template-columns:1fr}
-  .hero-side{min-height:auto}
+  .hero-side{min-height:auto;grid-template-rows:none}
+  .hero-side .cell{min-height:230px}
   .grid{grid-template-columns:1fr 1fr;gap:30px 22px}
   .hero-main h1{font-size:2rem}
   .bar-actions .socials{display:none}
@@ -282,6 +286,29 @@ footer{border-top:1px solid var(--line);margin-top:40px;position:relative;z-inde
 //  El Publicador agrega notas nuevas aqui automaticamente.
 // ====================================================================
 const articles = [
+  {
+    tag:"Eventos", kick:"Eventos",
+    title:"RÜFÜS DU SOL regresa a la CDMX este 4 de julio",
+    lede:"El trío australiano trae su North America Tour al Estadio GNP Seguros con Maribou State y Peces Raros.",
+    by:"Redacción BEATLINE", date:"Sábado 4 jul · CDMX",
+    img:"https://res.cloudinary.com/dmwaryk7b/image/upload/v1783038126/IMG_4212_jhtufg.jpg",
+    cap:"RÜFÜS DU SOL se presenta en el Estadio GNP Seguros, CDMX.",
+    img2:"https://res.cloudinary.com/dmwaryk7b/image/upload/v1783038126/IMG_4213_xfipjj.jpg",
+    body:`<p>El trío australiano RÜFÜS DU SOL regresa a la Ciudad de México para uno de los conciertos electrónicos más esperados del verano. La cita es el sábado 4 de julio de 2026 en el Estadio GNP Seguros, dentro de su North America Tour 2026, con un montaje audiovisual a gran escala que la banda ha prometido como su producción más ambiciosa en el país. El show arranca a las 21:00 horas y contará con dos invitados especiales: Maribou State y el dúo argentino Peces Raros.</p><p>Integrado por Tyrone Lindqvist, Jon George y James Hunt, RÜFÜS DU SOL se ha consolidado como uno de los proyectos más queridos por el público mexicano tras sus pasos por festivales como Vaivén y Corona Capital. Su propuesta fusiona electrónica, indie y deep house con instrumentación en vivo y sintetizadores atmosféricos, creando experiencias sensoriales envolventes que han convertido cada una de sus presentaciones en algo más cercano a un ritual emocional que a un concierto convencional.</p><div class="pull">La magia de Innerbloom, Alive y On My Knees llega a la CDMX.</div><p>La trayectoria del grupo respalda la expectativa. Con cuatro álbumes de estudio, incluido su más reciente material de larga duración, Surrender, la banda realizó una gira por 60 ciudades y vendió 700,000 boletos a nivel mundial. Su sensibilidad melódica los ha llevado a colaborar y ser remezclados por nombres como Adriatique, y su influencia se extiende a su propio sello, Rose Avenue, así como al festival boutique Sundream, que celebran en Tulum y Baja California.</p><p>Para esta presentación, RÜFÜS DU SOL no solo traerá himnos como Innerbloom, Alive, On My Knees y Underwater, sino una producción visual completamente renovada. Los asistentes pueden esperar un despliegue de láseres y pantallas LED que acompañan la narrativa emocional del grupo en vivo, en el marco de un estadio que se presta para una experiencia de gran formato.</p><p>El Estadio GNP Seguros, anteriormente conocido como Foro Sol, es uno de los recintos para conciertos masivos más importantes de la capital. Su capacidad y renovación reciente lo convierten en el escenario ideal para el show más grande de la banda en México, donde la atmósfera creada por el trío promete envolver a miles de asistentes.</p><p>Los boletos están disponibles a través de Ticketmaster, con precios que van desde los 980 hasta los 3,314 pesos según la zona, ya con cargos por servicio. La cita es el sábado 4 de julio en el Estadio GNP Seguros. Toda la información oficial y detalles de acceso se mantienen actualizados en los canales oficiales del evento.</p>`
+  },
+
+  {
+    tag:"Eventos", kick:"Eventos",
+    title:"Solomun confirma su regreso a Tehmplo Tulum para enero de 2027",
+    lede:"El ícono del house y melodic techno anuncia una presentación exclusiva en el corazón de la selva de Tulum para iniciar el año con la mejor energía.",
+    by:"Redacción BEATLINE", date:"7 de enero de 2027 · Tulum",
+    img:"https://res.cloudinary.com/dmwaryk7b/image/upload/v1783037331/IMG_4202_jcpygn.jpg",
+    cap:"Solomun regresa a Tehmplo para la temporada 2027 en la Riviera Maya.",
+    img2:"https://res.cloudinary.com/dmwaryk7b/image/upload/v1783037331/IMG_4203_rgky53.jpg",
+    ig:"https://www.instagram.com/reel/DZj_DjSMMPj/?igsh=MTZhbDFnZGtjbm9wOQ==",
+    body:`<p>La temporada electrónica en la Riviera Maya comienza a tomar forma con uno de los anuncios más esperados por la comunidad internacional. Solomun, el icónico DJ y productor bosnio-alemán, ha confirmado oficialmente su regreso a Tulum para el próximo 7 de enero de 2027, presentándose en el recinto Tehmplo.</p><div class="pull">Solomun se ha consolidado como un referente absoluto de la música house y melodic techno, dominando pistas de baile en todo el mundo.</div><p>Conocido por su capacidad para dominar las pistas de baile con sus sets extendidos y una curaduría musical inigualable, Solomun se ha consolidado como un referente absoluto de la música house y melodic techno. Su estilo, caracterizado por bajos profundos y melodías eufóricas, ha definido la identidad de sellos discográficos influyentes como Diynamic, fundado por él mismo en 2005.</p><p>El evento tendrá lugar en Tehmplo, un espacio diseñado para integrarse armónicamente con la selva de Tulum. Este venue ha ganado relevancia por ofrecer una experiencia inmersiva donde la producción detallada y la atmósfera natural se combinan para crear encuentros únicos. La presentación es organizada por LostNights y Mandala Group, quienes garantizan una producción de alto calibre.</p><p>Aunque por el momento el anuncio se limita a la participación de Solomun, la expectativa ya es alta debido a la lealtad de su base de fans y la tradición que rodea a sus presentaciones en tierras mexicanas. El evento está programado para comenzar a las 19:00 horas.</p><div class="pull">Los interesados en asistir ya pueden acceder a la preinscripción para boletos prioritarios a través de los canales oficiales.</div><p>Los interesados en asistir ya pueden acceder a la preinscripción para boletos prioritarios a través de los canales oficiales vinculados al anuncio. Dado el historial de alta demanda para las presentaciones del productor en Tulum, se recomienda asegurar el acceso con antelación.</p>`
+  },
+
   {
     tag:"Festivales", kick:"Festivales",
     title:"HUMAN Festival 2027 despierta: cita en Querétaro el 27 de marzo",
@@ -460,7 +487,12 @@ function openArticle(i){
     <h1>${a.title}</h1>
     <p class="lede">${a.lede}</p>
     <div class="by"><span>${a.date}</span><button class="share-btn" onclick="shareNote(${i})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v7a1 1 0 001 1h14a1 1 0 001-1v-7"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v14"/></svg>Compartir</button></div>
-    <div class="hero-img" style="background-image:url('${a.img}')"></div>
+    ${(() => { const s = statsFor(a.title); return `<div class="stats">
+      <span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>${s.likes}</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>${s.comments}</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v7a1 1 0 001 1h14a1 1 0 001-1v-7"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v14"/></svg>${s.shares}</span>
+    </div>`; })()}
+    <img class="hero-img" src="${a.img}" alt="">
     <div class="cap">${a.cap||''}</div>
     <div class="body">${buildBody(a)}</div>
     ${a.ig ? `<div class="ig-wrap"><div class="ig-label">La fuente · Instagram</div><div class="ig-embed"><blockquote class="instagram-media" data-instgrm-permalink="${a.ig}" data-instgrm-version="14" style="margin:0 auto;max-width:540px;width:100%"></blockquote></div></div>` : ''}`;
@@ -531,15 +563,27 @@ renderTicker();
 renderHero();
 renderGrid();
 
+function statsFor(title){
+  // Cifras estables por nota: 1k-3k likes, comentarios y compartidos proporcionales
+  let h = 0;
+  for(let i=0;i<title.length;i++){ h = (h*31 + title.charCodeAt(i)) >>> 0; }
+  const likes = 1000 + (h % 2001);              // 1000 - 3000
+  const comments = Math.round(likes * (0.03 + (h % 37)/1000));   // ~3-6.7%
+  const shares = Math.round(likes * (0.09 + (h % 53)/1000));     // ~9-14%
+  const fmt = n => n >= 1000 ? (n/1000).toFixed(1).replace('.0','') + 'k' : n;
+  return {likes: fmt(likes), comments: comments, shares: fmt(shares)};
+}
 function buildBody(a){
-  if(!a.img2) return a.body;
+  // Limpieza: quitar marcadores de cita que a veces se cuelan del agente
+  const clean = (a.body||'').replace(/\[span_\d+\]\((?:start|end)_span\)/g,'');
+  if(!a.img2) return clean;
   // Inserta la segunda imagen a la mitad de los párrafos
-  const parts = a.body.split(/<\/p>/i).filter(s => s.trim());
+  const parts = clean.split(/<\/p>/i).filter(s => s.trim());
   const mid = Math.ceil(parts.length / 2);
   let out = '';
   parts.forEach((p, idx) => {
     out += p + '</p>';
-    if(idx === mid - 1) out += `<div class="body-img" style="background-image:url('${a.img2}')"></div>`;
+    if(idx === mid - 1) out += `<img class="body-img" src="${a.img2}" alt="">`;
   });
   return out;
 }
