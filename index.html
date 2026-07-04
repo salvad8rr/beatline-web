@@ -358,15 +358,15 @@ const articles = [
 
   {
     tag:"EVENTOS",
-    title:"Rock N Rave vuelve a Supremo con su Denim Edition",
-    lede:"La fiesta nómada confirma su regreso a Supremo CDMX el sábado 29 de agosto. El dress code no es vestirse 100% de mezclilla: es meterle tu toque y volverse comunidad.",
+    title:"Rock N Rave y su Denim Edition: una noche donde la mezclilla nos vuelve comunidad",
+    lede:"La fiesta nómada regresa a Supremo CDMX el sábado 29 de agosto. Su dress code no pide un atuendo total de mezclilla, sino que cada quien lo interprete a su manera; ahí nace el sentido de pertenencia.",
     date:"SÁB 29 AGO · CDMX",
     by:"Redacción BEATLINE",
     img:"https://res.cloudinary.com/dmwaryk7b/image/upload/v1783082070/IMG_4270_twoegm.jpg",
     cap:"Rock N Rave · Denim Edition en Supremo CDMX, 29 de agosto.",
     img2:"https://res.cloudinary.com/dmwaryk7b/image/upload/v1783082070/IMG_4271_f0e5vu.jpg",
     ig:"https://res.cloudinary.com/dmwaryk7b/image/upload/v1783082070/IMG_4271_f0e5vu.jpg",
-    body:"<p>Hay fiestas que se ganan su reputación noche a noche, y Rock N Rave es una de ellas. Conocida por su ambiente de buena vibra y una comunidad fiel que la sigue a donde vaya, la fiesta nómada ya tiene confirmado su próximo golpe sobre la mesa: la Denim Edition, que aterriza en Supremo CDMX el sábado 29 de agosto de 2026.</p><p>La cita es en Supremo, en la colonia Doctores, con puertas abiertas desde las 16:00 horas y jornada extendida hasta la madrugada. El evento es para mayores de 21 años, y trae un detalle que ya es marca de la casa: un dress code. Pero ojo, aquí no se trata de vestirse 100% de mezclilla de pies a cabeza. La idea es más libre y más divertida: que cada quien le meta su propio toque. Una chamarra, un pantalón, una falda, una jacket… lo que quieras, mientras lleves algo de mezclilla puesto.</p><div class=\"pull\">Cuando todos comparten un mismo detalle, dejan de ser individuos y se vuelven comunidad.</div><p>Y ahí está el verdadero corazón de la Denim Edition. El dress code no es un capricho estético: es un pretexto para generar pertenencia. Es esa misma sensación de cuando vas a un concierto y toda la gente canta la misma canción al mismo tiempo, o cuando todos comparten un gesto y de pronto el cuarto entero se siente conectado. La mezclilla es el hilo que une a la banda esa noche y transforma a un montón de desconocidos en una sola comunidad.</p><p>Porque lo que hace especial a Rock N Rave no es una lista de headliners internacionales, sino algo más difícil de construir: una identidad. Como lo definen sus propios organizadores, cada edición se vive diferente —distinta producción, distinta iluminación, distinto lugar—, lo que convierte a RNR en una experiencia que nunca se repite. Su fórmula combina una curaduría honesta con un ambiente en el que la gente va a disfrutar de verdad, sin poses. Un evento nómada que busca gente que solo quiera tirar buen pedismo en un rave.</p><p>Para quienes buscan un rave sin complicaciones, con identidad propia y una comunidad que va exactamente por lo mismo, la Denim Edition de Rock N Rave ya es una de las fechas a marcar en agosto. Los boletos están disponibles en Passline. Ponte creativo con tu mezclilla y nos vemos ahí.</p>"
+    body:"<p>Hay fiestas que construyen su reputación noche tras noche, y Rock N Rave es, sin duda, una de ellas. Reconocida por su ambiente cálido y por una comunidad fiel que la acompaña a donde se presente, la propuesta nómada ya confirmó su siguiente capítulo: la Denim Edition, que llegará a Supremo CDMX el sábado 29 de agosto de 2026.</p><p>La cita será en Supremo, en la colonia Doctores, con acceso a partir de las 16:00 horas y una jornada que se extenderá hasta la madrugada. El evento está reservado para mayores de 21 años e incluye un elemento que ya se ha vuelto sello de la casa: su dress code. Conviene aclararlo, porque no se trata de vestir un atuendo íntegramente de mezclilla. La idea es mucho más libre y creativa: que cada persona lo interprete a su manera. Una chamarra, un pantalón, una falda, una jacket… la prenda que prefieras, siempre que lleves contigo ese guiño de mezclilla.</p><div class=\"pull\">Cuando todos comparten un mismo detalle, dejan de ser individuos para convertirse en comunidad.</div><p>Y en ese gesto reside el verdadero corazón de la Denim Edition. El dress code no responde a un capricho estético, sino a un propósito más profundo: crear pertenencia. Es esa misma emoción que aparece cuando, en un concierto, toda la sala canta la misma canción al unísono, o cuando un gesto compartido conecta de pronto a cientos de desconocidos. La mezclilla funciona como el hilo invisible que une a los asistentes esa noche y los transforma en una sola comunidad.</p><p>Porque lo que distingue a Rock N Rave no es un cartel de headliners internacionales, sino algo bastante más difícil de construir: una identidad propia. Como lo describen sus organizadores, cada edición se vive de forma distinta —otra producción, otra iluminación, otro espacio—, lo que convierte a cada RNR en una experiencia irrepetible. Su fórmula combina una curaduría honesta con un ambiente en el que la gente asiste, sencillamente, a disfrutar sin poses. Un evento itinerante para quienes buscan pasarla bien, de verdad, en un rave.</p><p>Para quienes valoran una fiesta sin complicaciones, con carácter propio y una comunidad que va justo por lo mismo, la Denim Edition de Rock N Rave se perfila como una de las fechas imperdibles de agosto. Los boletos ya están disponibles en Passline. Dale tu propio giro a la mezclilla y nos vemos en la pista.</p>"
   },
 
   {
@@ -679,12 +679,21 @@ function statsFor(title){
   // Cifras estables por nota. Views siempre es el número más alto.
   let h = 0;
   for(let i=0;i<title.length;i++){ h = (h*31 + title.charCodeAt(i)) >>> 0; }
+  // Notas marcadas como "recién publicadas": números bajos y realistas de estreno
+  const nuevas = ["Rock N Rave y su Denim Edition"];
+  if(nuevas.some(n => title.indexOf(n) !== -1)){
+    const views = 40 + (h % 25);          // ~40-64 vistas
+    const likes = 8 + (h % 10);           // ~8-17 likes
+    const comments = 1 + (h % 3);         // 1-3 comentarios
+    const shares = 1 + (h % 2);           // 1-2 compartidos
+    return {views: views, likes: likes, comments: comments, shares: shares};
+  }
   const likes = 1000 + (h % 2001);              // 1000 - 3000
   const comments = Math.round(likes * (0.03 + (h % 37)/1000));   // ~3-6.7%
   const shares = Math.round(likes * (0.09 + (h % 53)/1000));     // ~9-14%
   const views = likes * (5 + (h % 4)) + (h % 900);   // 5x-8x los likes = siempre el mayor
   const fmt = n => n >= 1000 ? (n/1000).toFixed(1).replace('.0','') + 'k' : n;
-  return {views: fmt(views), likes: fmt(likes), comments: comments, shares: fmt(shares)};
+  return {views: fmt(views), likes: fmt(likes), comments: comments, shares: shares};
 }
 function buildBody(a){
   // Limpieza: quitar marcadores de cita que a veces se cuelan del agente
