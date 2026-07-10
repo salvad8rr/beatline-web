@@ -141,6 +141,10 @@ main{max-width:1240px;margin:0 auto;padding:0 28px;position:relative;z-index:2}
 .card .thumb .img{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .6s ease;filter:grayscale(.25) contrast(1.05)}
 .card:hover .thumb .img{transform:scale(1.07)}
 .card .tag{position:absolute;top:0;left:0;background:var(--accent);color:#0a0a0c;font-family:'Space Mono',monospace;font-size:.62rem;font-weight:700;padding:5px 9px;text-transform:uppercase;letter-spacing:1px;z-index:2}
+.card.drop{background:linear-gradient(135deg,rgba(168,85,247,.10),rgba(168,85,247,.02));border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:12px;cursor:default}
+.card.drop .drop-kick{color:var(--accent);font-family:'Space Mono',monospace;font-size:.7rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase}
+.card.drop .drop-embed{width:100%;overflow:hidden;border-radius:10px}
+.card.drop .drop-embed iframe,.card.drop .drop-embed blockquote{width:100%!important;min-width:0!important}
 .card h3{font-weight:600;font-size:1.12rem;line-height:1.2;letter-spacing:-.4px;margin:16px 0 8px;transition:color .2s}
 .card:hover h3{color:var(--accent)}
 .card p{font-size:.86rem;color:var(--muted);line-height:1.45}
@@ -158,6 +162,17 @@ main{max-width:1240px;margin:0 auto;padding:0 28px;position:relative;z-index:2}
 .share-btn svg{width:15px;height:15px}
 .stats{font-family:'Space Mono',monospace;font-size:.72rem;color:var(--muted);letter-spacing:1px;display:flex;gap:22px;align-items:center;border-bottom:1px solid var(--line);padding:14px 0;margin:-20px 0 34px}
 .stats span{display:inline-flex;align-items:center;gap:7px}
+.stats .stat-like,.stats .stat-share{cursor:pointer;user-select:none;transition:color .2s}
+.stats .stat-like:hover,.stats .stat-share:hover{opacity:.85}
+.stats .stat-like.liked{color:#ff3b5c}
+.stats .stat-share.shared{color:#22c55e}
+@keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.4)}70%{transform:scale(.9)}100%{transform:scale(1)}}
+@keyframes jump{0%{transform:translateY(0)}30%{transform:translateY(-7px)}55%{transform:translateY(2px)}100%{transform:translateY(0)}}
+.stats .stat-like.animate svg{animation:pop .45s ease}
+.stats .stat-share.animate{animation:jump .5s ease}
+.stats .stat-share.shared svg,.stats .stat-like.liked svg{fill:currentColor}
+.share-toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(20px);background:#22c55e;color:#04120a;font-family:'Sora',sans-serif;font-weight:700;font-size:.9rem;padding:12px 22px;border-radius:30px;opacity:0;pointer-events:none;transition:all .3s;z-index:2000}
+.share-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .stats svg{width:15px;height:15px}
 .article .hero-img{width:100%;height:auto;display:block;border:1px solid var(--line);margin-bottom:14px}
 .article .cap{font-family:'Space Mono',monospace;font-size:.68rem;color:var(--muted);margin-bottom:40px}
@@ -650,6 +665,12 @@ const articles = [
   }
 ];
 
+const lanzamientos = [
+  { tag:"ÚLTIMO LANZAMIENTO", label:"Nuevo drop", ig:"https://www.instagram.com/p/DamwdHoDONF/" },
+  { tag:"ÚLTIMO LANZAMIENTO", label:"Fresh out", ig:"https://www.instagram.com/p/DaDTCyBHDPr/" },
+  { tag:"ÚLTIMO LANZAMIENTO", label:"Nuevo drop", ig:"https://www.instagram.com/p/DaUvuNPDKhi/" }
+];
+
 function renderTicker(){
   const items = articles.slice(0,4).map(a=>`<span>◆ ${a.title.toUpperCase()}</span>`).join('');
   document.getElementById('ticker').innerHTML = items + items;
@@ -688,9 +709,71 @@ function renderHero(){
 function renderGrid(){
   const g = document.getElementById('grid');
   const rest = articles.slice(3);
-  g.innerHTML = rest.map((a,idx)=>{
+  // Posiciones donde intercalar los lanzamientos (cada ~5 tarjetas)
+  const dropEvery = 5;
+  let html = '';
+  let dropIdx = 0;
+  rest.forEach((a,idx)=>{
     const realIndex = idx + 3;
-    // Cada 4 notas, una sale en formato mediano (ancho completo) para romper el ritmo
+    const esMediana = idx % 4 === 1;
+    if(esMediana){
+      html += `
+    <div class="card mid" onclick="openArticle(${realIndex})">
+      <div class="thumb">
+        <span class="tag">${a.tag}</span>
+        <div class="img" style="background-image:url('${a.img}')"></div>
+      </div>
+      <div class="mid-txt">
+        <span class="kick">${a.tag}</span>
+        <h3>${a.title}</h3>
+        <p>${a.lede}</p>
+        <div class="meta">${a.date}</div>
+      </div>
+    </div>`;
+    } else {
+      html += `
+    <div class="card" onclick="openArticle(${realIndex})">
+      <div class="thumb">
+        <span class="tag">${a.tag}</span>
+        <div class="img" style="background-image:url('${a.img}')"></div>
+      </div>
+      <h3>${a.title}</h3>
+      <p>${a.lede}</p>
+      <div class="meta">${a.date}</div>
+    </div>`;
+    }
+    // Intercalar un lanzamiento cada dropEvery tarjetas
+    if((idx+1) % dropEvery === 0 && dropIdx < lanzamientos.length){
+      const L = lanzamientos[dropIdx];
+      html += `
+    <div class="card drop">
+      <span class="kick drop-kick">${L.tag}</span>
+      <div class="drop-embed"><blockquote class="instagram-media" data-instgrm-permalink="${L.ig}" data-instgrm-version="14" style="margin:0 auto;max-width:100%;width:100%"></blockquote></div>
+    </div>`;
+      dropIdx++;
+    }
+  });
+  // Si sobran lanzamientos sin intercalar, agregarlos al final
+  while(dropIdx < lanzamientos.length){
+    const L = lanzamientos[dropIdx];
+    html += `
+    <div class="card drop">
+      <span class="kick drop-kick">${L.tag}</span>
+      <div class="drop-embed"><blockquote class="instagram-media" data-instgrm-permalink="${L.ig}" data-instgrm-version="14" style="margin:0 auto;max-width:100%;width:100%"></blockquote></div>
+    </div>`;
+    dropIdx++;
+  }
+  g.innerHTML = html;
+  // Cargar embeds de Instagram
+  if(window.instgrm && window.instgrm.Embeds){ window.instgrm.Embeds.process(); }
+  else {
+    const s=document.createElement('script'); s.async=true; s.src='https://www.instagram.com/embed.js';
+    document.body.appendChild(s);
+  }
+  return;
+  // (código viejo abajo queda inerte)
+  const _unused = rest.map((a,idx)=>{
+    const realIndex = idx + 3;
     const esMediana = idx % 4 === 1;
     if(esMediana){
       return `
@@ -737,9 +820,9 @@ function openArticle(i){
     <div class="by"><span>${a.date}</span><button class="share-btn" onclick="shareNote(${i})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v7a1 1 0 001 1h14a1 1 0 001-1v-7"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v14"/></svg>Compartir</button></div>
     ${(() => { const s = statsFor(a.title); return `<div class="stats">
       <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>${s.views}</span>
-      <span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>${s.likes}</span>
+      <span class="stat-like" onclick="toggleLike(this)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg><b data-base="${s.likes}">${s.likes}</b></span>
       <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>${s.comments}</span>
-      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v7a1 1 0 001 1h14a1 1 0 001-1v-7"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v14"/></svg>${s.shares}</span>
+      <span class="stat-share" onclick="shareFromStats(this, ${i})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v7a1 1 0 001 1h14a1 1 0 001-1v-7"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v14"/></svg><b data-base="${s.shares}">${s.shares}</b></span>
     </div>`; })()}
     <img class="hero-img" src="${a.img}" alt="">
     <div class="cap">${a.cap||''}</div>
@@ -812,6 +895,58 @@ renderTicker();
 renderHero();
 renderGrid();
 
+function fmtN(n){ return n >= 1000 ? (n/1000).toFixed(1).replace('.0','')+'k' : n; }
+function parseBase(str){
+  if(typeof str === 'number') return str;
+  str = String(str).trim();
+  if(str.endsWith('k')) return Math.round(parseFloat(str)*1000);
+  return parseInt(str,10) || 0;
+}
+function toggleLike(el){
+  const b = el.querySelector('b');
+  let base = parseBase(b.dataset.base);
+  if(el.classList.contains('liked')){
+    el.classList.remove('liked');
+    b.textContent = fmtN(base);
+  } else {
+    el.classList.add('liked');
+    el.classList.remove('animate'); void el.offsetWidth; el.classList.add('animate');
+    b.textContent = fmtN(base + 1);
+  }
+}
+function shareFromStats(el, idx){
+  const b = el.querySelector('b');
+  let base = parseBase(b.dataset.base);
+  el.classList.add('shared');
+  el.classList.remove('animate'); void el.offsetWidth; el.classList.add('animate');
+  if(!el.dataset.counted){ b.textContent = fmtN(base + 1); el.dataset.counted = '1'; }
+  // Copiar el link de la nota al portapapeles
+  const a = articles[idx];
+  const url = location.origin + location.pathname + '#' + slugify(a.title);
+  const done = () => showShareToast('¡Link copiado!');
+  if(navigator.share){
+    navigator.share({title: a.title, url: url}).then(done).catch(()=>{ copyLink(url, done); });
+  } else {
+    copyLink(url, done);
+  }
+}
+function copyLink(url, cb){
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(url).then(cb).catch(()=>fallbackCopy(url,cb));
+  } else { fallbackCopy(url,cb); }
+}
+function fallbackCopy(url, cb){
+  const t=document.createElement('textarea'); t.value=url; t.style.position='fixed'; t.style.opacity='0';
+  document.body.appendChild(t); t.select();
+  try{ document.execCommand('copy'); }catch(e){}
+  document.body.removeChild(t); cb && cb();
+}
+function showShareToast(msg){
+  let el = document.getElementById('shareToast');
+  if(!el){ el=document.createElement('div'); el.id='shareToast'; el.className='share-toast'; document.body.appendChild(el); }
+  el.textContent = msg; el.classList.add('show');
+  clearTimeout(window._toastT); window._toastT = setTimeout(()=>el.classList.remove('show'), 1900);
+}
 function statsFor(title){
   // Cifras estables por nota. Views siempre es el número más alto.
   let h = 0;
