@@ -988,12 +988,12 @@ function statsFor(title){
   let h = 0;
   for(let i=0;i<title.length;i++){ h = (h*31 + title.charCodeAt(i)) >>> 0; }
   // Notas marcadas como "recién publicadas": números bajos y realistas de estreno
-  const nuevas = ["Rock N Rave y su Denim Edition"];
+  const nuevas = ["Gratitude Sessions llega a MIMI"];
   if(nuevas.some(n => title.indexOf(n) !== -1)){
-    const views = 40 + (h % 25);          // ~40-64 vistas
-    const likes = 8 + (h % 10);           // ~8-17 likes
-    const comments = 1 + (h % 3);         // 1-3 comentarios
-    const shares = 1 + (h % 2);           // 1-2 compartidos
+    const views = 18 + (h % 22);          // ~18-39 vistas
+    const likes = 3 + (h % 6);            // ~3-8 likes
+    const comments = 0;                   // sin comentarios (recién salida)
+    const shares = h % 3;                 // 0-2 compartidos
     return {views: views, likes: likes, comments: comments, shares: shares};
   }
   const likes = 1000 + (h % 2001);              // 1000 - 3000
