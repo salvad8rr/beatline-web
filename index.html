@@ -752,6 +752,33 @@ const articles = [
   }
 ];
 
+// Ordena las notas por fecha de publicación (más nueva primero) al cargar la web.
+// Lee el campo date en formato "20 julio 2026". Si no lo entiende, respeta el orden del array.
+(function ordenarPorFecha(){
+  const MESES = {enero:1,febrero:2,marzo:3,abril:4,mayo:5,junio:6,julio:7,agosto:8,
+                 septiembre:9,setiembre:9,octubre:10,noviembre:11,diciembre:12};
+  function aNumero(txt){
+    if(!txt) return -1;
+    const t = String(txt).toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+    const m = t.match(/(\d{1,2})\s*(?:de\s*)?([a-z]+)\s*(?:de\s*)?(\d{4})/);
+    if(!m) return -1;
+    const mes = MESES[m[2]];
+    if(!mes) return -1;
+    return parseInt(m[3],10)*10000 + mes*100 + parseInt(m[1],10);
+  }
+  articles.forEach((a,i)=>{ a._i = i; a._f = aNumero(a.date); });
+  // Las que no se pudieron leer conservan su posición relativa al inicio
+  articles.sort((a,b)=>{
+    if(a._f === -1 && b._f === -1) return a._i - b._i;
+    if(a._f === -1) return -1;
+    if(b._f === -1) return 1;
+    if(b._f !== a._f) return b._f - a._f;
+    return a._i - b._i;
+  });
+  articles.forEach(a=>{ delete a._i; delete a._f; });
+})();
+
 const lanzamientos = [
   { tag:"PRÓXIMO ESTRENO", label:"Muy pronto", ig:"https://www.instagram.com/p/DaYGJ7UHN99/" },
   { tag:"ÚLTIMO LANZAMIENTO", label:"Nuevo drop", ig:"https://www.instagram.com/p/DamwdHoDONF/" },
