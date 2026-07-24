@@ -1149,12 +1149,12 @@ function statsFor(title){
   let h = 0;
   for(let i=0;i<title.length;i++){ h = (h*31 + title.charCodeAt(i)) >>> 0; }
   // Notas marcadas como "recién publicadas": números bajos y realistas de estreno
-  const nuevas = ["Gratitude Sessions llega a MIMI"];
+  const nuevas = ["HÏGHÊŠT toma la terraza"];
   if(nuevas.some(n => title.indexOf(n) !== -1)){
-    const views = 640 + (h % 180);        // ~640-819 vistas
-    const likes = 95 + (h % 45);          // ~95-139 likes
-    const comments = 6 + (h % 7);         // 6-12 comentarios
-    const shares = 14 + (h % 10);         // 14-23 compartidos
+    const views = 55 + (h % 40);          // ~55-94 vistas
+    const likes = 7 + (h % 9);            // ~7-15 likes
+    const comments = 0;                   // sin comentarios (recién salida)
+    const shares = 1 + (h % 3);           // 1-3 compartidos
     return {views: views, likes: likes, comments: comments, shares: shares};
   }
   const likes = 1000 + (h % 2001);              // 1000 - 3000
