@@ -193,6 +193,19 @@ main{max-width:1240px;margin:0 auto;padding:0 28px;position:relative;z-index:2}
 .article .body p{font-size:1.05rem;line-height:1.78;color:#dcdce0;margin-bottom:24px;font-weight:300}
 .article .body h2{font-family:'Sora',sans-serif;font-weight:800;font-size:1.4rem;letter-spacing:-.5px;margin:40px 0 14px}
 .article .pull{border-left:3px solid var(--accent);padding:6px 0 6px 24px;margin:36px 0;font-size:1.35rem;font-weight:600;line-height:1.3;letter-spacing:-.5px}
+#acerca{max-width:1240px;margin:64px auto 0;padding:0 28px;position:relative;z-index:2}
+#acerca .ab-card{border-top:1px solid var(--line);padding-top:44px}
+#acerca .ab-kick{color:var(--accent);font-family:'Space Mono',monospace;font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;display:block;margin-bottom:14px}
+#acerca h2{font-family:'Sora',sans-serif;font-weight:800;font-size:2.1rem;letter-spacing:-1px;line-height:1.1;margin-bottom:22px;max-width:16ch}
+#acerca p{color:var(--muted);font-size:1rem;line-height:1.7;max-width:62ch;margin-bottom:16px}
+#acerca p strong{color:var(--ink);font-weight:600}
+#acerca .ab-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:22px;margin:34px 0 30px;padding:26px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+#acerca .ab-stat b{display:block;font-family:'Sora',sans-serif;font-weight:800;font-size:1.7rem;color:var(--ink);letter-spacing:-.5px}
+#acerca .ab-stat span{font-family:'Space Mono',monospace;font-size:.7rem;color:var(--muted);letter-spacing:1.2px;text-transform:uppercase}
+#acerca .ab-contact{font-family:'Space Mono',monospace;font-size:.85rem;color:var(--muted);letter-spacing:.5px;line-height:2}
+#acerca .ab-contact a{color:var(--accent);text-decoration:none}
+#acerca .ab-contact a:hover{text-decoration:underline}
+@media(max-width:640px){#acerca h2{font-size:1.6rem}#acerca{margin-top:44px}}
 .nl-section{max-width:1240px;margin:20px auto 0;padding:0 28px;position:relative;z-index:2}
 .nl-card{background:linear-gradient(135deg,rgba(168,85,247,.14),rgba(168,85,247,.04));border:1px solid var(--line);border-radius:16px;padding:52px 32px;text-align:center;position:relative;overflow:hidden}
 .nl-card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--accent)}
@@ -294,7 +307,7 @@ footer{border-top:1px solid var(--line);margin-top:40px;position:relative;z-inde
     <a onclick="goHome();toggleMenu()"><span class="num">03</span> Agenda</a>
     <a onclick="goHome();toggleMenu()"><span class="num">04</span> Mixes</a>
     <a onclick="goHome();toggleMenu()"><span class="num">05</span> Escena</a>
-    <a onclick="goHome();toggleMenu()"><span class="num">06</span> Acerca de</a>
+    <a onclick="irAcerca()"><span class="num">06</span> Acerca de</a>
   </nav>
   <div class="menu-foot">
     <div class="socials">
@@ -339,6 +352,32 @@ footer{border-top:1px solid var(--line);margin-top:40px;position:relative;z-inde
     </div>
   </div>
 </div>
+
+<section id="acerca">
+  <div class="ab-card">
+    <span class="ab-kick">Acerca de</span>
+    <h2>El pulso de la electrónica mexicana, contado desde adentro</h2>
+
+    <p>BEATLINE nació en 2026 con una idea simple: México dejó de ser una parada de gira para convertirse en una escena que exporta talento, y alguien tenía que contarlo con el rigor que merece. No somos un agregador de flyers. Investigamos antes de publicar, verificamos fechas y line ups con las fuentes oficiales, y corregimos cuando alguien nos señala un error.</p>
+
+    <p>Cubrimos lo que pasa en la pista y alrededor de ella: <strong>eventos y festivales</strong>, <strong>perfiles de artistas</strong>, <strong>cultura de club</strong> y los <strong>lanzamientos</strong> que están definiendo el sonido nacional. De los sótanos del Centro a los escenarios de Zamna, de un B3B en una terraza de Isabel la Católica a un set de diez horas en Guadalajara.</p>
+
+    <p>Esa forma de trabajar nos ganó algo que no se compra: <strong>los artistas y promotores nos leen</strong>. Nuestras coberturas han sido compartidas por los propios protagonistas de la escena, y con frecuencia son ellos quienes se acercan para precisar un dato o ampliar una historia. Es la clase de relación que solo se construye publicando bien, una nota a la vez.</p>
+
+    <div class="ab-grid">
+      <div class="ab-stat"><b>2026</b><span>Desde</span></div>
+      <div class="ab-stat"><b>CDMX</b><span>Base</span></div>
+      <div class="ab-stat"><b>Nacional</b><span>Cobertura</span></div>
+      <div class="ab-stat"><b>Diario</b><span>Publicación</span></div>
+    </div>
+
+    <p class="ab-contact">
+      Fundador y CEO · Equipo BEATLINE<br>
+      Prensa, colaboraciones y acreditaciones: <a href="mailto:beatline.contacto@gmail.com">beatline.contacto@gmail.com</a><br>
+      <a href="https://www.instagram.com/beatline.mx" target="_blank" rel="noopener">@beatline.mx</a> · <a href="https://www.tiktok.com/@beatline" target="_blank" rel="noopener">TikTok</a>
+    </p>
+  </div>
+</section>
 
 <section class="nl-section">
   <div class="nl-card">
@@ -1143,6 +1182,14 @@ function showShareToast(msg){
   if(!el){ el=document.createElement('div'); el.id='shareToast'; el.className='share-toast'; document.body.appendChild(el); }
   el.textContent = msg; el.classList.add('show');
   clearTimeout(window._toastT); window._toastT = setTimeout(()=>el.classList.remove('show'), 1900);
+}
+function irAcerca(){
+  toggleMenu();
+  goHome();
+  setTimeout(function(){
+    var el = document.getElementById('acerca');
+    if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+  }, 120);
 }
 function statsFor(title){
   // Cifras estables por nota. Views siempre es el número más alto.
