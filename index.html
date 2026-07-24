@@ -390,7 +390,7 @@ const articles = [
     title:"WhoMadeWho trae The Moment a CDMX por primera vez",
     lede:"El trío danés convierte el Foro Polanco en una de las pocas sedes globales de su festival conceptual este 26 de septiembre.",
     by:"Redactado por Beatline", date:"21 julio 2026",
-    img:"https://res.cloudinary.com/dmwaryk7b/image/upload/v1784783505/IMG_5279_yiz7dk.jpg",
+    img:"https://res.cloudinary.com/dmwaryk7b/image/upload/v1784866116/IMG_5346_kv4cqj.jpg",
     cap:"WhoMadeWho presentará The Moment en el Foro Polanco el 26 de septiembre.",
     img2:"https://res.cloudinary.com/dmwaryk7b/image/upload/v1784783505/IMG_5280_m6refj.jpg",
     ig:"https://www.instagram.com/p/DbEAPKZlCiT/?igsh=MXIwbHhwZjM1anhvbA==",
@@ -425,7 +425,7 @@ const articles = [
     title:"DJ Snake se presentará gratis en Puebla el 15 de agosto",
     lede:"El productor francés encabeza el Festival Frecuencias en la Plaza de la Victoria con entrada libre, dentro del Circuito Nacional de Festivales por la Paz.",
     by:"Redactado por Beatline", date:"16 julio 2026",
-    img:"https://res.cloudinary.com/dmwaryk7b/image/upload/v1784782353/IMG_5271_m5ug3m.jpg",
+    img:"https://res.cloudinary.com/dmwaryk7b/image/upload/v1784866116/IMG_5345_y371rt.jpg",
     cap:"DJ Snake encabezará el Festival Frecuencias en la Plaza de la Victoria, Puebla.",
     img2:"https://res.cloudinary.com/dmwaryk7b/image/upload/v1784782353/IMG_5270_vfpaen.jpg",
     body:`<p>Puebla vuelve al mapa de los grandes eventos internacionales. La Secretaría de Cultura del Gobierno de México, en coordinación con el Gobierno del Estado de Puebla, confirmó la presentación de DJ Snake en el Festival Frecuencias 2026: sábado 15 de agosto, a partir de las 16:00 horas, en la Plaza de la Victoria, con acceso completamente gratuito.</p><p>El concierto forma parte del Circuito Nacional de Festivales por la Paz, una estrategia federal que impulsa actividades artísticas y culturales en las 32 entidades del país. Su objetivo declarado es fortalecer el tejido social, descentralizar el acceso a los bienes culturales y generar espacios de convivencia e identidad dirigidos especialmente a las juventudes. La gestión del evento se dio mediante una colaboración institucional entre la federación y el gobierno estatal encabezado por Alejandro Armenta Mier.</p><div class="pull">Sin boletaje, sin costo y en una plaza pública: el show más grande del verano poblano será de entrada libre.</div><p>William Sami Étienne Grigahcine, conocido mundialmente como DJ Snake, es uno de los productores más influyentes de la última década. Su salto definitivo a la fama global llegó con Turn Down for What, y desde entonces ha construido una carrera marcada por su capacidad de fusionar la electrónica con el hip hop, el pop, el reguetón y distintos sonidos urbanos.</p><p>Su catálogo incluye colaboraciones con Lady Gaga, Justin Bieber, Selena Gomez, Ozuna, Cardi B, J Balvin, Major Lazer, MØ y Peso Pluma, con éxitos como Lean On, Let Me Love You, Taki Taki, Loco Contigo y Middle. Esa trayectoria lo ha llevado a encabezar los carteles de Tomorrowland, Ultra Music Festival, Coachella y Lollapalooza.</p><p>La llegada del francés confirma una racha para la escena poblana: apenas durante la Feria de Puebla 2026, el escocés Calvin Harris abarrotó el Teatro del Pueblo con una de las presentaciones más esperadas del año. A diferencia de aquel show, el del 15 de agosto será de acceso totalmente libre, por lo que se anticipa la llegada de miles de asistentes no solo de Puebla, sino también de estados vecinos.</p><p>En términos prácticos: no hay boletaje ni costo de entrada, la sede es la Plaza de la Victoria en la zona de Los Fuertes, y el arranque está marcado a las 16:00 horas. Dada la naturaleza gratuita del evento y el tamaño del artista, conviene llegar con bastante anticipación. Los detalles logísticos y cualquier actualización se publican por los canales oficiales de la Secretaría de Cultura y del Gobierno de Puebla.</p>`
@@ -1139,10 +1139,10 @@ function statsFor(title){
   // Notas marcadas como "recién publicadas": números bajos y realistas de estreno
   const nuevas = ["Gratitude Sessions llega a MIMI"];
   if(nuevas.some(n => title.indexOf(n) !== -1)){
-    const views = 18 + (h % 22);          // ~18-39 vistas
-    const likes = 3 + (h % 6);            // ~3-8 likes
-    const comments = 0;                   // sin comentarios (recién salida)
-    const shares = h % 3;                 // 0-2 compartidos
+    const views = 640 + (h % 180);        // ~640-819 vistas
+    const likes = 95 + (h % 45);          // ~95-139 likes
+    const comments = 6 + (h % 7);         // 6-12 comentarios
+    const shares = 14 + (h % 10);         // 14-23 compartidos
     return {views: views, likes: likes, comments: comments, shares: shares};
   }
   const likes = 1000 + (h % 2001);              // 1000 - 3000
