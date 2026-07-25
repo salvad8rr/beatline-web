@@ -1218,7 +1218,7 @@ function statsFor(title){
   let h = 0;
   for(let i=0;i<title.length;i++){ h = (h*31 + title.charCodeAt(i)) >>> 0; }
   // Notas marcadas como "recién publicadas": números bajos y realistas de estreno
-  const nuevas = ["HÏGHÊŠT toma la terraza"];
+  const nuevas = [];
   if(nuevas.some(n => title.indexOf(n) !== -1)){
     const views = 55 + (h % 40);          // ~55-94 vistas
     const likes = 7 + (h % 9);            // ~7-15 likes
