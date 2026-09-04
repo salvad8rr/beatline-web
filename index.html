@@ -1489,7 +1489,7 @@ function openArticle(i){
     <img class="hero-img" src="${a.img}" alt="">
     <div class="cap">${a.cap||''}</div>
     <div class="body">${buildBody(a)}</div>
-    ${a.ig ? `<div class="ig-wrap"><div class="ig-embed"><blockquote class="instagram-media" data-instgrm-permalink="${a.ig}" data-instgrm-version="14" style="margin:0 auto;max-width:540px;width:100%"></blockquote></div></div>` : ''}`;
+    ${igEmbedHTML(a.ig)}`;
   if(a.ig) loadIgEmbed();
   document.getElementById('home').style.display='none';
   document.getElementById('article').style.display='block';
@@ -1616,6 +1616,18 @@ function irAcerca(){
     var el = document.getElementById('acerca');
     if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
   }, 120);
+}
+function igEmbedHTML(url){
+  if(!url) return '';
+  // Limpiar parámetros de compartir (?igsh=...) y normalizar
+  let u = String(url).split('?')[0].replace(/\/+$/,'');
+  // Detectar tipo: /p/ (foto o carrusel), /reel/ o /tv/ (video)
+  const esVideo = /\/(reel|reels|tv)\//.test(u);
+  // Instagram embebe reels correctamente con la ruta /reel/
+  u = u.replace('/reels/','/reel/');
+  const permalink = u + '/';
+  const attrVideo = esVideo ? ' data-instgrm-is-video="true"' : '';
+  return '<div class="ig-wrap"><div class="ig-embed"><blockquote class="instagram-media" data-instgrm-permalink="'+permalink+'" data-instgrm-version="14"'+attrVideo+' style="margin:0 auto;max-width:540px;width:100%"></blockquote></div></div>';
 }
 function statsFor(title){
   // Cifras estables por nota. Views siempre es el número más alto.
