@@ -417,7 +417,7 @@ const articles = [
     tag:"Eventos", kick:"Eventos",
     title:"Diplo trae su Run Club al Autódromo Hermanos Rodríguez",
     lede:"El DJ lleva por primera vez fuera de Estados Unidos su formato de 5K con festival en la meta. La cita es el 10 de enero de 2027 en CDMX.",
-    by:"Redactado por Beatline", date:"2026-09-24",
+    by:"Redactado por Beatline", date:"24 septiembre 2026",
     img:"https://res.cloudinary.com/dmwaryk7b/image/upload/v1791337320/IMG_9848_fafh40.jpg",
     cap:"Diplo durante una edición de Diplo’s Run Club en Estados Unidos.",
     img2:"https://res.cloudinary.com/dmwaryk7b/image/upload/v1791337520/IMG_9849_mqzvsm.jpg",
@@ -429,7 +429,7 @@ const articles = [
     tag:"Eventos", kick:"Eventos",
     title:"Terms & Conditions regresa a Guadalajara con Tom & Collins y AYYBO",
     lede:"El dúo mexicano vuelve a Campo Mágico el 13 de noviembre con su serie de eventos y un line up que suma a AYYBO y Clüb de Combat.",
-    by:"Redactado por Beatline", date:"2026-10-05",
+    by:"Redactado por Beatline", date:"5 octubre 2026",
     img:"https://res.cloudinary.com/dmwaryk7b/image/upload/v1791253348/IMG_9772_ifbvho.jpg",
     cap:"Tom & Collins, anfitriones de Terms & Conditions.",
     img2:"https://res.cloudinary.com/dmwaryk7b/image/upload/v1791253348/IMG_9771_lui16t.jpg",
@@ -1487,6 +1487,10 @@ const articles = [
     if(!txt) return -1;
     const t = String(txt).toLowerCase()
       .normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+    // Formato ISO: 2026-09-24
+    const iso = t.match(/(\d{4})-(\d{1,2})-(\d{1,2})/);
+    if(iso) return parseInt(iso[1],10)*10000 + parseInt(iso[2],10)*100 + parseInt(iso[3],10);
+    // Formato normal: 24 septiembre 2026 / 24 de septiembre de 2026
     const m = t.match(/(\d{1,2})\s*(?:de\s*)?([a-z]+)\s*(?:de\s*)?(\d{4})/);
     if(!m) return -1;
     const mes = MESES[m[2]];
@@ -1494,11 +1498,11 @@ const articles = [
     return parseInt(m[3],10)*10000 + mes*100 + parseInt(m[1],10);
   }
   articles.forEach((a,i)=>{ a._i = i; a._f = aNumero(a.date); });
-  // Las que no se pudieron leer conservan su posición relativa al inicio
+  // Las que no se pudieron leer se van al final, para no ocupar la portada por error
   articles.sort((a,b)=>{
     if(a._f === -1 && b._f === -1) return a._i - b._i;
-    if(a._f === -1) return -1;
-    if(b._f === -1) return 1;
+    if(a._f === -1) return 1;
+    if(b._f === -1) return -1;
     if(b._f !== a._f) return b._f - a._f;
     return a._i - b._i;
   });
