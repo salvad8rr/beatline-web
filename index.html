@@ -417,7 +417,7 @@ const articles = [
     tag:"Escena", kick:"Escena",
     title:"Peggy Gou suena fuerte para el 15 aniversario de Tecate Pa'l Norte",
     lede:"El nombre de la DJ y productora surcoreana encabeza las conversaciones rumbo a la edición 2027 del festival en Parque Fundidora.",
-    by:"Redactado por Beatline", date:"15 NOV 2026",
+    by:"Redactado por Beatline", date:"15 noviembre 2026",
     img:"https://res.cloudinary.com/dmwaryk7b/image/upload/v1794798095/IMG_3312_wuserp.jpg",
     cap:"Peggy Gou se perfila entre los actos electrónicos más pedidos para Tecate Pa'l Norte 2027.",
     img2:"https://res.cloudinary.com/dmwaryk7b/image/upload/v1794798096/IMG_3313_xj39zm.jpg",
@@ -1576,7 +1576,10 @@ const articles = [
 // Lee el campo date en formato "20 julio 2026". Si no lo entiende, respeta el orden del array.
 (function ordenarPorFecha(){
   const MESES = {enero:1,febrero:2,marzo:3,abril:4,mayo:5,junio:6,julio:7,agosto:8,
-                 septiembre:9,setiembre:9,octubre:10,noviembre:11,diciembre:12};
+                 septiembre:9,setiembre:9,octubre:10,noviembre:11,diciembre:12,
+                 // abreviaturas (ene, feb, nov, dic, sept...) en cualquier capitalizacion
+                 ene:1,feb:2,mar:3,abr:4,may:5,jun:6,jul:7,ago:8,
+                 sep:9,sept:9,oct:10,nov:11,dic:12};
   function aNumero(txt){
     if(!txt) return -1;
     const t = String(txt).toLowerCase()
