@@ -291,6 +291,10 @@ footer{border-top:1px solid var(--line);margin-top:40px;position:relative;z-inde
 .t-card .t-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.22,1,.36,1)}
 .t-card:hover .t-img img{transform:scale(1.04)}
 .t-card .t-precio{position:absolute;left:12px;bottom:12px;background:var(--accent);color:#0a0a0c;font-family:'Space Mono',monospace;font-weight:700;font-size:.8rem;letter-spacing:.5px;padding:6px 12px;border-radius:30px}
+.t-card .t-share{position:absolute;top:12px;right:12px;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:rgba(10,10,12,.62);backdrop-filter:blur(6px);color:#f4f4f0;font-size:.95rem;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s,border-color .2s,transform .12s;z-index:3}
+.t-card .t-share:hover{background:var(--accent);border-color:var(--accent);color:#0a0a0c}
+.t-card .t-share:active{transform:scale(.92)}
+.t-card .t-share.ok{background:var(--accent);border-color:var(--accent);color:#0a0a0c;font-family:'Space Mono',monospace;font-size:.56rem;letter-spacing:.3px;width:auto;padding:0 12px;border-radius:30px}
 .t-card .t-body{padding:18px 18px 20px;display:flex;flex-direction:column;flex:1}
 .t-card h3{font-family:'Sora',sans-serif;font-weight:800;font-size:1.12rem;letter-spacing:-.4px;line-height:1.22;margin-bottom:9px}
 .t-card .t-meta{font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.6px;color:var(--muted);line-height:1.8;margin-bottom:14px;text-transform:uppercase}
@@ -320,14 +324,14 @@ footer{border-top:1px solid var(--line);margin-top:40px;position:relative;z-inde
 .tours-strip h2{font-family:'Sora',sans-serif;font-weight:800;font-size:1.55rem;letter-spacing:-.9px;line-height:1.1}
 .tours-strip .ts-all{flex:none;font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:1px;color:var(--accent);cursor:pointer;white-space:nowrap;padding-bottom:4px}
 .tours-strip .ts-all:hover{text-decoration:underline}
-.ts-rail{display:flex;gap:13px;overflow-x:auto;padding-bottom:12px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.ts-rail{display:flex;gap:15px;overflow-x:auto;padding-bottom:12px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .ts-rail::-webkit-scrollbar{display:none}
-.ts-item{flex:0 0 150px;scroll-snap-align:start;cursor:pointer;border-radius:11px;overflow:hidden;position:relative;border:1px solid var(--line);transition:border-color .25s}
+.ts-item{flex:0 0 250px;scroll-snap-align:start;cursor:pointer;border-radius:11px;overflow:hidden;position:relative;border:1px solid var(--line);transition:border-color .25s}
 .ts-item:hover{border-color:rgba(168,85,247,.55)}
 .ts-item img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;transition:transform .45s cubic-bezier(.22,1,.36,1)}
 .ts-item:hover img{transform:scale(1.05)}
-.ts-item .ts-cap{position:absolute;left:0;right:0;bottom:0;padding:22px 11px 11px;background:linear-gradient(to top,rgba(10,10,12,.93) 35%,transparent)}
-.ts-item .ts-cap b{display:block;font-family:'Sora',sans-serif;font-weight:700;font-size:.8rem;line-height:1.2;letter-spacing:-.2px;margin-bottom:3px}
+.ts-item .ts-cap{position:absolute;left:0;right:0;bottom:0;padding:38px 15px 15px;background:linear-gradient(to top,rgba(10,10,12,.95) 40%,transparent)}
+.ts-item .ts-cap b{display:block;font-family:'Sora',sans-serif;font-weight:800;font-size:1.12rem;line-height:1.18;letter-spacing:-.5px}
 .ts-item .ts-cap span{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.5px;color:var(--muted);text-transform:uppercase}
 
 @media(max-width:860px){
@@ -337,7 +341,8 @@ footer{border-top:1px solid var(--line);margin-top:40px;position:relative;z-inde
   #tours{padding:0 18px 60px}
   .tours-strip{padding:22px 18px 4px}
   .tours-strip h2{font-size:1.3rem}
-  .ts-item{flex:0 0 132px}
+  .ts-item{flex:0 0 205px}
+  .ts-item .ts-cap b{font-size:1rem}
 }
 
 </style>
@@ -430,7 +435,6 @@ footer{border-top:1px solid var(--line);margin-top:40px;position:relative;z-inde
     <span class="t-kick">Tours BEATLINE</span>
     <h1>Vive el festival, no solo lo leas</h1>
     <p>Llevamos años contando lo que pasa en las pistas más importantes del mundo. Ahora te llevamos a ellas. Paquetes completos a los festivales que marcan el calendario: <strong>vuelo, hospedaje, boleto y traslados resueltos</strong>, para que lo único que tengas que pensar sea qué vas a bailar.</p>
-    <span class="t-ally">En alianza con <b>New Spot Entertainment</b></span>
   </div>
 
   <div class="t-proceso">
@@ -1753,7 +1757,7 @@ function renderTours(){
     rail.innerHTML = tours.map((t,i)=>`
       <div class="ts-item" onclick="verTours('${t.slug}')">
         <img src="${t.img}" alt="${t.nombre}" loading="lazy">
-        <div class="ts-cap"><b>${t.nombre}</b><span>${t.fechas}</span></div>
+        <div class="ts-cap"><b>${t.nombre}</b></div>
       </div>`).join('');
   }
 
@@ -1764,7 +1768,8 @@ function renderTours(){
     <div class="t-card" id="tour-${t.slug}">
       <div class="t-img" onclick="toggleTour('${t.slug}')">
         <img src="${t.img}" alt="${t.nombre}" loading="lazy">
-        <span class="t-precio">${t.precio ? 'Desde ' + t.precio : 'Aparta con ' + t.aparta}</span>
+        <span class="t-precio">Aparta con ${t.aparta}</span>
+        <button class="t-share" onclick="event.stopPropagation();compartirTour('${t.slug}',this)" aria-label="Compartir este paquete">&#128279;</button>
       </div>
       <div class="t-body">
         <h3>${t.nombre}</h3>
@@ -1797,6 +1802,25 @@ function renderTours(){
     }, {threshold:.35});
     obs2.observe(pasos);
   }
+}
+
+function compartirTour(slug, btn){
+  const t = tours.find(x=>x.slug===slug);
+  if(!t) return;
+  const url = location.origin + location.pathname + '#tour-' + slug;
+  const ok = function(){
+    const prev = btn.innerHTML;
+    btn.classList.add('ok');
+    btn.innerHTML = 'COPIADO';
+    setTimeout(function(){ btn.classList.remove('ok'); btn.innerHTML = prev; }, 1600);
+  };
+  if(navigator.share){
+    navigator.share({title: 'Tour BEATLINE: ' + t.nombre, text: t.gancho, url: url}).catch(function(){});
+    return;
+  }
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(url).then(ok).catch(function(){ ok(); });
+  } else { ok(); }
 }
 
 function toggleTour(slug){
@@ -2245,6 +2269,11 @@ function shareNote(i){
 (function(){
   const h = location.hash.replace('#','');
   if(!h) return;
+  if(h === 'tours'){ verTours(); return; }
+  if(h.indexOf('tour-') === 0){
+    const slug = h.slice(5);
+    if(tours.some(t=>t.slug===slug)){ verTours(slug); return; }
+  }
   const idx = articles.findIndex(a => slugify(a.title) === h || a.alias === h);
   if(idx >= 0) openArticle(idx);
 })();
